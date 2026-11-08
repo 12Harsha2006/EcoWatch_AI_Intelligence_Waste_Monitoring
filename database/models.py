@@ -156,3 +156,4 @@ class VerificationRecord(Base):
 
     def __repr__(self):
         return f"<VerificationRecord(incident_id={self.incident_id}, {self.previous_status}->{self.new_status})>"
+

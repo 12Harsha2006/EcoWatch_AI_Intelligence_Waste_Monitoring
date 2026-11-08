@@ -26,3 +26,4 @@ def setup_logger(name: str = "waste_detection") -> logging.Logger:
     return logger
 
 logger = setup_logger()
+

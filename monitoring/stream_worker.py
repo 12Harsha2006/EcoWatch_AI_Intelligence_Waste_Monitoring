@@ -242,3 +242,4 @@ class StreamManager:
 
 # Global singleton StreamManager
 camera_stream_manager = StreamManager()
+

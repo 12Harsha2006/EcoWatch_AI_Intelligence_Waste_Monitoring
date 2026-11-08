@@ -79,3 +79,4 @@ class BasePoseEstimator(ABC):
         arm extension, or discarding movements.
         """
         pass
+

@@ -128,3 +128,4 @@ class VideoSource:
             self.cap = None
         self._opened = False
         logger.info(f"Released video source for camera {self.camera_id}")
+

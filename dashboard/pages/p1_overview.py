@@ -73,3 +73,4 @@ def render():
         st.dataframe(pd.DataFrame(display_data), use_container_width=True)
     else:
         st.info("No incidents detected yet. Start monitoring on the 'Live Monitoring' page.")
+

@@ -88,3 +88,4 @@ def test_incident_lifecycle(db_session):
 
     # Cleanup
     CameraRepository.delete(db_session, cam_id)
+

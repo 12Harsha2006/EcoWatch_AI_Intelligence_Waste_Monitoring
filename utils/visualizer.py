@@ -120,3 +120,4 @@ def draw_detections(
         )
 
     return output
+

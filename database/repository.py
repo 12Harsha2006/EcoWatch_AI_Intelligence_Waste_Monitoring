@@ -313,3 +313,4 @@ class EvidenceRepository:
     @staticmethod
     def get_by_incident(db: Session, incident_id: str) -> List[EvidenceRecord]:
         return db.query(EvidenceRecord).filter(EvidenceRecord.incident_id == incident_id).all()
+

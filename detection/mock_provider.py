@@ -123,3 +123,4 @@ class MockDetectionProvider(BaseDetectionProvider):
                 })
 
         return detections
+

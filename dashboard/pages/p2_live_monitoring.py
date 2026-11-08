@@ -86,3 +86,4 @@ def render():
         if worker and worker.latest_annotated_frame is not None:
             rgb_frame = cv2.cvtColor(worker.latest_annotated_frame, cv2.COLOR_BGR2RGB)
             video_container.image(rgb_frame, channels="RGB", caption="Last captured frame", use_container_width=True)
+

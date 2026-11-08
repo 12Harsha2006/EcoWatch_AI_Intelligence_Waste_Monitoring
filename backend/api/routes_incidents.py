@@ -142,3 +142,4 @@ def resolve_incident(incident_id: str, payload: IncidentUpdateStatus, db: Sessio
     if not incident:
         raise HTTPException(status_code=404, detail="Incident not found.")
     return incident
+

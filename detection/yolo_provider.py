@@ -71,3 +71,4 @@ class YOLOProvider(BaseDetectionProvider):
                 })
 
         return detections
+

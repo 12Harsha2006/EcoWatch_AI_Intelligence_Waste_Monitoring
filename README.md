@@ -15,10 +15,10 @@ This system is built with a **modular architecture** separating computer vision 
 
 ```
 +-----------------------------------------------------------------------------------+
-|                           Streamlit Admin Dashboard                               |
-| (Overview | Live CCTV | Cameras | Incidents | Evidence | Zones | Reports | Settings)   |
+|                        React.js / Vite AI Surveillance Dashboard                  |
+| (Overview | Live CCTV | Incidents | Evidence | Cameras | Analytics | Reports | Settings)|
 +------------------------------------------+----------------------------------------+
-                                           | HTTP REST / Direct Client
+                                           | Axios REST / Direct Proxy
                                            v
 +-----------------------------------------------------------------------------------+
 |                               FastAPI Backend API                                 |
@@ -55,11 +55,16 @@ This system is built with a **modular architecture** separating computer vision 
 
 | Technology | Purpose |
 | :--- | :--- |
-| **Python 3.10+** | Core programming language |
+| **React 19 & Vite** | Fast, modern client-side frontend framework |
+| **Tailwind CSS v4** | Dark professional surveillance dashboard styling |
+| **Axios** | REST API communication with FastAPI backend |
+| **React Router (v7)** | Seamless client-side SPA routing across all 8 surveillance pages |
+| **Recharts** | Interactive timeline, location hotspot, and category distribution charts |
+| **Lucide React** | Modern surveillance and status icons |
+| **Python 3.10+** | Backend API, detection engine, and database logic |
 | **OpenCV (`cv2`)** | Video stream reading, polygon evaluation, and frame annotation |
 | **FastAPI** | High-performance asynchronous REST backend API with OpenAPI docs |
 | **SQLite & SQLAlchemy** | Relational database and Object-Relational Mapper (ORM) |
-| **Streamlit** | Interactive multi-page Administrator Surveillance Dashboard |
 | **NumPy** | Array manipulations and coordinate geometric transformations |
 | **Pydantic (v2)** | Request/response data validation and settings management |
 | **Pytest** | Automated unit and integration testing suite |
@@ -203,25 +208,37 @@ python main.py test
 
 ## 🖥️ Running the Application
 
-### Option A: Run the Streamlit Administrator Dashboard
-In your terminal, execute:
+### Option A: Run the React.js + Vite Frontend Dashboard
+In your terminal, navigate to the `frontend` directory or run via `main.py`:
 ```powershell
-python main.py dashboard
+python main.py frontend
 ```
-Or directly via Streamlit:
+Or directly using npm:
 ```powershell
-streamlit run dashboard/app.py
+cd frontend
+npm run dev
 ```
-Streamlit will automatically open your browser at **`http://localhost:8501`**.
+> The React Dashboard will launch at: **`http://localhost:5173`** (with automatic proxy to FastAPI on port 8000).
+
+---
 
 ### Option B: Run the FastAPI Backend Server
-In a second terminal window (with virtual environment activated):
+In a second terminal window (with the virtual environment activated):
 ```powershell
 python main.py backend
 ```
-The FastAPI backend will launch on **`http://127.0.0.1:8000`**.
-- Interactive OpenAPI documentation: **`http://127.0.0.1:8000/docs`**
-- Alternative Redoc API documentation: **`http://127.0.0.1:8000/redoc`**
+> The FastAPI backend will launch on: **`http://127.0.0.1:8000`**
+> - Interactive OpenAPI Swagger UI: **`http://127.0.0.1:8000/docs`**
+> - Alternative Redoc API documentation: **`http://127.0.0.1:8000/redoc`**
+
+---
+
+### Option C: Run the Streamlit Admin Dashboard (Optional Python UI)
+You can also run the Streamlit dashboard:
+```powershell
+python main.py dashboard
+```
+> Launches at: **`http://localhost:8501`**
 
 ---
 
@@ -270,3 +287,4 @@ class BaseDetectionProvider(ABC):
    - Track object persistence to differentiate between a person walking by vs leaving waste behind stationary.
 
 **No changes to `database/`, `backend/`, or `dashboard/` will be required when plugging in these AI models.**
+

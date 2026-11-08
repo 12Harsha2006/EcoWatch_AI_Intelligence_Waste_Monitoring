@@ -40,3 +40,4 @@ def download_evidence_file(incident_id: str, filename: str):
         media_type = "application/json"
 
     return FileResponse(path=str(file_path), media_type=media_type, filename=safe_filename)
+

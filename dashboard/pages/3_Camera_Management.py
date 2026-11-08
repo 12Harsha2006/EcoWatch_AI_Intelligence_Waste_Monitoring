@@ -8,3 +8,4 @@ from dashboard.components.ui_widgets import render_simulation_banner
 
 render_simulation_banner()
 render()
+

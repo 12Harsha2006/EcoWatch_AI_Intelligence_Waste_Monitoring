@@ -71,3 +71,4 @@ def delete_zone(zone_id: str, db: Session = Depends(get_db)):
     if not success:
         raise HTTPException(status_code=404, detail="Restricted zone not found.")
     return {"message": f"Restricted zone '{zone_id}' deleted successfully."}
+

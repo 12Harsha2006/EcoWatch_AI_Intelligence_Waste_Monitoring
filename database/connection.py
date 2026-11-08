@@ -42,3 +42,4 @@ def init_db() -> None:
     import database.models  # Ensure models are imported so Base metadata is populated
     Base.metadata.create_all(bind=engine)
     logger.info("Database schema initialized successfully.")
+

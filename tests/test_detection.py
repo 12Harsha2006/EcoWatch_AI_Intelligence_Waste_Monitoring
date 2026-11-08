@@ -31,3 +31,4 @@ def test_mock_detections_format():
         assert 0 <= x1 < x2 <= 640
         assert 0 <= y1 < y2 <= 480
         assert 0.0 <= det["confidence"] <= 1.0
+

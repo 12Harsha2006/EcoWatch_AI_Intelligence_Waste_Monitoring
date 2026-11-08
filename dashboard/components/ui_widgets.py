@@ -33,3 +33,4 @@ def render_status_badge(status: str) -> str:
     }
     bg, fg = status_colors.get(status.upper(), ("#F1F5F9", "#475569"))
     return f"""<span style="background-color: {bg}; color: {fg}; padding: 3px 10px; border-radius: 12px; font-weight: 600; font-size: 0.8rem;">{status.upper()}</span>"""
+

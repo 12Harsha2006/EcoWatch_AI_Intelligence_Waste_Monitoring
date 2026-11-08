@@ -84,3 +84,4 @@ def render():
             st.bar_chart(loc_summary, color="#6366F1")
     else:
         st.info("No incident records found matching the filter.")
+

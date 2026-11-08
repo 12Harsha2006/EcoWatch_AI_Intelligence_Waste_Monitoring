@@ -1,4 +1,5 @@
 import numpy as np
+from pathlib import Path
 from monitoring.video_source import VideoSource
 from monitoring.zone_evaluator import ZoneEvaluator
 
@@ -13,6 +14,20 @@ def test_synthetic_video_source():
 
     source.release()
     assert source.is_opened() is False
+
+def test_video_file_source():
+    sample_file = Path("uploads/sample_cctv.mp4")
+    if sample_file.exists():
+        source = VideoSource("CAM_FILE_TEST", "file", str(sample_file))
+        assert source.is_opened() is True
+
+        ret, frame = source.read_frame()
+        assert ret is True
+        assert isinstance(frame, np.ndarray)
+        assert frame.shape == (480, 640, 3)
+
+        source.release()
+        assert source.is_opened() is False
 
 def test_zone_evaluator_point_in_polygon():
     # Square zone: (100, 100) to (300, 300)

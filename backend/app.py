@@ -77,3 +77,4 @@ def health_check():
         "app_env": settings.APP_ENV,
         "evidence_directory": settings.EVIDENCE_DIR
     }
+

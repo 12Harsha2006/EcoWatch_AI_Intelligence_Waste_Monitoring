@@ -75,3 +75,4 @@ elif page_selection == "Waste Accumulation Reports":
 elif page_selection == "System Settings":
     import dashboard.pages.p8_settings as p
     p.render()
+

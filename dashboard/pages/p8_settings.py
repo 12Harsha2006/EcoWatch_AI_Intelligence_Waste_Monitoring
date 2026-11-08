@@ -67,3 +67,4 @@ def render():
             st.metric("Disk Storage Used", f"{size_mb:.2f} MB")
     else:
         st.info("Evidence directory not created yet.")
+

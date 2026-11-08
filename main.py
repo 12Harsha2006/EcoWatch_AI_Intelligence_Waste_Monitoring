@@ -41,6 +41,12 @@ def run_dashboard():
     ]
     subprocess.run(cmd)
 
+def run_frontend():
+    frontend_dir = os.path.join(os.path.dirname(__file__), "frontend")
+    logger.info("Starting React Vite Frontend Dashboard on port 5173...")
+    # Run npm run dev inside frontend directory
+    subprocess.run(["npm", "run", "dev"], cwd=frontend_dir, shell=True)
+
 def run_tests():
     logger.info("Running full automated test suite...")
     subprocess.run([sys.executable, "-m", "pytest", "-v"])
@@ -53,6 +59,7 @@ def main():
 Examples:
   python main.py init-db      Initialize database schema and seed demo cameras
   python main.py backend      Launch FastAPI Backend server (port 8000)
+  python main.py frontend     Launch React Vite Dashboard (port 5173)
   python main.py dashboard    Launch Streamlit Admin Dashboard (port 8501)
   python main.py test         Execute pytest automated test suite
         """
@@ -61,7 +68,7 @@ Examples:
         "command",
         nargs="?",
         default="help",
-        choices=["init-db", "backend", "dashboard", "test", "help"],
+        choices=["init-db", "backend", "frontend", "dashboard", "test", "help"],
         help="Action to execute"
     )
 
@@ -71,6 +78,8 @@ Examples:
         run_init_db()
     elif args.command == "backend":
         run_backend()
+    elif args.command == "frontend":
+        run_frontend()
     elif args.command == "dashboard":
         run_dashboard()
     elif args.command == "test":
@@ -80,3 +89,4 @@ Examples:
 
 if __name__ == "__main__":
     main()
+

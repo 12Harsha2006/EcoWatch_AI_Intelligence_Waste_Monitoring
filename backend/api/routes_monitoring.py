@@ -53,3 +53,4 @@ def trigger_mock_incident(camera_id: str):
     if not success:
         raise HTTPException(status_code=400, detail=f"Camera '{camera_id}' is not currently running.")
     return {"status": "SIMULATION_TRIGGERED", "camera_id": camera_id}
+
