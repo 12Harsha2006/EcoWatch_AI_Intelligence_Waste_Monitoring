@@ -1,6 +1,6 @@
-# AI-Based Unauthorized Waste Disposal Detection and Monitoring System
+# EcoWatch AI – AI-Based Unauthorized Waste Disposal Detection and Monitoring System
 
-An intelligent surveillance and incident management application designed to detect, flag, and monitor unauthorized garbage disposal activities from CCTV feeds, webcams, or uploaded video recordings.
+An intelligent environmental surveillance and incident management platform designed to detect, flag, and monitor unauthorized garbage disposal activities from CCTV feeds, webcams, or uploaded video recordings.
 
 ---
 
