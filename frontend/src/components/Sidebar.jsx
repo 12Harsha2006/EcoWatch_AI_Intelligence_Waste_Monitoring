@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Video,
@@ -12,9 +12,18 @@ import {
   ShieldCheck,
   Globe,
   Radio,
+  LogOut,
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 export default function Sidebar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
   const navItems = [
     { label: 'Overview', path: '/dashboard', icon: LayoutDashboard, exact: true },
     { label: 'Live Monitoring', path: '/dashboard/monitoring', icon: Video },
@@ -70,15 +79,22 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Return to Public Portal Link */}
-      <div className="pt-3 pb-2">
+      {/* Return to Public Portal & Logout Links */}
+      <div className="pt-2 pb-2 space-y-1">
         <Link
           to="/"
-          className="flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-medium text-[#94A3B8] hover:bg-[#1A273D] hover:text-white transition-colors"
+          className="flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-[#94A3B8] hover:bg-[#1A273D] hover:text-white transition-colors"
         >
           <Globe className="h-4 w-4 text-teal-400" />
-          <span>Public Landing Page</span>
+          <span>Public Portal</span>
         </Link>
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors cursor-pointer"
+        >
+          <LogOut className="h-4 w-4" />
+          <span>Sign Out</span>
+        </button>
       </div>
 
       {/* System Telemetry Footer */}

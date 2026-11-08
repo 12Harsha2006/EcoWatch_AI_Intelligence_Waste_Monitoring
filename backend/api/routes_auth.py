@@ -100,3 +100,4 @@ def logout(authorization: Optional[str] = Header(None)):
         token = authorization.split(" ")[1]
         ACTIVE_SESSIONS.pop(token, None)
     return {"message": "Logged out successfully."}
+

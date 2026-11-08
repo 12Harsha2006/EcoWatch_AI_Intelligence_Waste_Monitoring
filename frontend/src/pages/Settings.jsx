@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Sliders,
   ShieldAlert,
+  ShieldCheck,
   Save,
   Plus,
   Trash2,
   CheckCircle,
   Cpu,
+  LogOut,
 } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { cameraService } from '../services/cameraService';
 import { zoneService } from '../services/zoneService';
+import { useAuth } from '../context/AuthContext';
 
 export default function Settings() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   const [cameras, setCameras] = useState([]);
   const [zones, setZones] = useState([]);
   const [selectedCamId, setSelectedCamId] = useState('');
@@ -446,6 +453,48 @@ export default function Settings() {
                 <span className="font-semibold text-white">ByteTrack:</span>
                 <span className="font-mono text-sky-400 font-semibold">Temporal Persistence</span>
               </div>
+            </div>
+          </div>
+
+          {/* Administrator Session & Security */}
+          <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm space-y-3">
+            <div className="flex items-center justify-between border-b border-[#1E2D42] pb-3">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-emerald-400" />
+                <h3 className="text-sm font-bold text-white">Administrator Terminal Session</h3>
+              </div>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                ACTIVE
+              </span>
+            </div>
+
+            <div className="space-y-2 text-xs text-slate-300">
+              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
+                <span className="text-[#94A3B8]">Authenticated As:</span>
+                <span className="font-semibold text-white">{user?.name || 'Chief Environmental Officer'}</span>
+              </div>
+              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
+                <span className="text-[#94A3B8]">Email:</span>
+                <span className="font-mono text-slate-300">{user?.email || 'admin@wastedetection.gov'}</span>
+              </div>
+              <div className="flex items-center justify-between pb-1">
+                <span className="text-[#94A3B8]">Authorization Scope:</span>
+                <span className="font-semibold text-emerald-400">{user?.role || 'System Administrator'}</span>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-[#1E2D42]">
+              <button
+                type="button"
+                onClick={async () => {
+                  await logout();
+                  navigate('/');
+                }}
+                className="flex items-center justify-center gap-2 w-full rounded-xl border border-rose-500/30 bg-rose-500/10 py-2.5 text-xs font-semibold text-rose-300 hover:bg-rose-500/20 hover:text-white transition-colors cursor-pointer"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Log Out to Public Portal</span>
+              </button>
             </div>
           </div>
 

@@ -15,14 +15,17 @@ This system is built with a **modular architecture** separating computer vision 
 
 ```
 +-----------------------------------------------------------------------------------+
-|                        React.js / Vite AI Surveillance Dashboard                  |
-| (Overview | Live CCTV | Incidents | Evidence | Cameras | Analytics | Reports | Settings)|
+|                        React.js / Vite AI Surveillance Application                |
+|  - Welcome Landing Page (/) [Environmental Technology Theme]                      |
+|  - Administrator Login (/login) [SHA-256 Auth & Bearer Token]                     |
+|  - Protected Admin Console (/dashboard/*)                                         |
+|    (Overview | Live CCTV | Incidents | Evidence | Cameras | Analytics | Reports)   |
 +------------------------------------------+----------------------------------------+
                                            | Axios REST / Direct Proxy
                                            v
 +-----------------------------------------------------------------------------------+
 |                               FastAPI Backend API                                 |
-|      (/api/cameras | /api/zones | /api/incidents | /api/evidence | /api/monitoring)       |
+| (/api/auth | /api/cameras | /api/zones | /api/incidents | /api/evidence | stream) |
 +--------------------+---------------------+--------------------+-------------------+
                      |                     |                    |
                      v                     v                    v
@@ -142,9 +145,9 @@ Waste_Disposal_Detection/
 │   ├── file_manager.py              # Evidence folder creator, saver, and validator
 │   └── visualizer.py                # OpenCV bounding box and polygon rendering
 │
-├── tests/                           # Automated Test Suite (13 passing tests)
+├── tests/                           # Automated Test Suite (16 passing tests)
 │   ├── __init__.py
-│   ├── test_api.py                  # FastAPI endpoints test
+│   ├── test_api.py                  # FastAPI auth & surveillance endpoints test
 │   ├── test_database.py             # SQLAlchemy CRUD & relationships test
 │   ├── test_detection.py            # Mock detection provider test
 │   └── test_monitoring.py           # VideoSource and ZoneEvaluator test
@@ -208,28 +211,41 @@ python main.py test
 
 ## 🖥️ Running the Application
 
-### Option A: Run the React.js + Vite Frontend Dashboard
-In your terminal, navigate to the `frontend` directory or run via `main.py`:
+### ⚡ Quick Start: 1-Click Dual Server Launch
+To launch both the FastAPI Backend and the React Frontend simultaneously in separate windows:
+* **PowerShell**:
+  ```powershell
+  .\run_system.ps1
+  ```
+* **Command Prompt / Windows Explorer**:
+  Double-click `run_system.bat`
+
+---
+
+### Manual Launch
+
+#### Terminal 1: FastAPI Backend Server
 ```powershell
-python main.py frontend
+.\venv\Scripts\Activate.ps1
+uvicorn backend.app:app --host 127.0.0.1 --port 8000 --reload
 ```
-Or directly using npm:
+> The FastAPI backend will launch on: **`http://127.0.0.1:8000`**
+> - Interactive OpenAPI Swagger UI: **`http://127.0.0.1:8000/docs`**
+
+#### Terminal 2: React.js + Vite Frontend Dashboard
 ```powershell
 cd frontend
 npm run dev
 ```
-> The React Dashboard will launch at: **`http://localhost:5173`** (with automatic proxy to FastAPI on port 8000).
+> The React Application will launch at: **`http://localhost:5173`**
 
 ---
 
-### Option B: Run the FastAPI Backend Server
-In a second terminal window (with the virtual environment activated):
-```powershell
-python main.py backend
-```
-> The FastAPI backend will launch on: **`http://127.0.0.1:8000`**
-> - Interactive OpenAPI Swagger UI: **`http://127.0.0.1:8000/docs`**
-> - Alternative Redoc API documentation: **`http://127.0.0.1:8000/redoc`**
+### 🔐 Administrator Login Credentials
+To access the protected surveillance dashboard from the login page:
+* **Email**: `admin@wastedetection.gov`
+* **Password**: `admin123`
+*(A convenient **"Quick-Fill Form"** button is also built into the Login screen)*
 
 ---
 
