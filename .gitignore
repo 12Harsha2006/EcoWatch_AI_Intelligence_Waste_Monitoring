@@ -16,9 +16,9 @@ ENV/
 frontend/.env.local
 
 # SQLite Database
-*.sqlite
-*.sqlite3
-*.db
+*.sqlite*
+*.sqlite3*
+*.db*
 
 # Evidence Media Files (Keep .gitkeep in evidence)
 evidence/*
