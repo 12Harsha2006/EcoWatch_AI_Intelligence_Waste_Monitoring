@@ -37,20 +37,20 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative flex max-h-[90vh] w-full max-w-4xl flex-col rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-black/80">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative flex max-h-[90vh] w-full max-w-4xl flex-col rounded-2xl border border-slate-200 bg-white shadow-2xl">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
           <div className="flex items-center gap-3">
-            <h2 className="text-lg font-bold text-white tracking-tight">
-              Incident Evidence: <span className="font-mono text-emerald-400">{incident.id}</span>
+            <h2 className="text-base font-bold text-slate-900 tracking-tight">
+              Incident Evidence: <span className="font-mono text-emerald-700">{incident.id}</span>
             </h2>
             <StatusBadge status={incident.status} />
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+            className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
           >
             <X className="h-5 w-5" />
           </button>
@@ -62,13 +62,13 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
           {/* Media Viewer Area */}
           <div className="lg:col-span-3 flex flex-col">
             {/* Tabs */}
-            <div className="mb-3 flex items-center gap-2 border-b border-slate-800 pb-2">
+            <div className="mb-3 flex items-center gap-2 border-b border-slate-100 pb-2">
               <button
                 onClick={() => setActiveTab('image')}
                 className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                   activeTab === 'image'
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 <Image className="h-4 w-4" /> Snapshot Image
@@ -77,8 +77,8 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
                 onClick={() => setActiveTab('video')}
                 className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                   activeTab === 'video'
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 <Video className="h-4 w-4" /> Video Recording
@@ -87,8 +87,8 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
                 onClick={() => setActiveTab('metadata')}
                 className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
                   activeTab === 'metadata'
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 <FileText className="h-4 w-4" /> Audit JSON
@@ -96,7 +96,7 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
             </div>
 
             {/* Tab Panes */}
-            <div className="relative flex flex-1 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/80 p-2 min-h-[300px]">
+            <div className="relative flex flex-1 items-center justify-center rounded-xl border border-slate-200 bg-slate-900 p-2 min-h-[300px]">
               {activeTab === 'image' && (
                 <div className="flex flex-col items-center">
                   <img
@@ -140,7 +140,7 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
               )}
 
               {activeTab === 'metadata' && (
-                <pre className="max-h-[360px] w-full overflow-auto rounded-lg bg-slate-900/80 p-4 font-mono text-xs text-slate-300">
+                <pre className="max-h-[360px] w-full overflow-auto rounded-lg bg-slate-950 p-4 font-mono text-xs text-slate-300">
                   {JSON.stringify(incident, null, 2)}
                 </pre>
               )}
@@ -149,63 +149,63 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
 
           {/* Details & Review Actions */}
           <div className="lg:col-span-2 flex flex-col justify-between space-y-4">
-            <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-950/50 p-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Incident Details</h4>
+            <div className="space-y-3 rounded-xl border border-slate-200 bg-slate-50/70 p-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600">Incident Details</h4>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
                   <span className="text-slate-500">Camera Source:</span>
-                  <p className="font-semibold text-slate-200">{incident.camera_id}</p>
+                  <p className="font-semibold text-slate-800">{incident.camera_id}</p>
                 </div>
                 <div>
                   <span className="text-slate-500">Confidence:</span>
-                  <p className="font-semibold text-emerald-400">{(incident.confidence * 100).toFixed(0)}%</p>
+                  <p className="font-semibold text-emerald-700 font-mono">{(incident.confidence * 100).toFixed(0)}%</p>
                 </div>
                 <div className="col-span-2">
                   <span className="text-slate-500">Location:</span>
-                  <p className="font-semibold text-slate-200">{incident.location}</p>
+                  <p className="font-semibold text-slate-800">{incident.location}</p>
                 </div>
                 <div className="col-span-2">
                   <span className="text-slate-500">Waste Classification:</span>
-                  <p className="font-semibold text-amber-400 uppercase tracking-wide">
+                  <p className="font-semibold text-amber-700 uppercase tracking-wide">
                     {incident.waste_category?.replace('_', ' ')}
                   </p>
                 </div>
                 <div className="col-span-2">
                   <span className="text-slate-500">Captured At (UTC):</span>
-                  <p className="font-mono text-slate-300">{incident.timestamp?.replace('T', ' ').slice(0, 19)}</p>
+                  <p className="font-mono text-slate-700">{incident.timestamp?.replace('T', ' ').slice(0, 19)}</p>
                 </div>
               </div>
             </div>
 
             {/* Review Form */}
-            <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-950/50 p-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Administrative Review</h4>
+            <div className="space-y-3 rounded-xl border border-slate-200 bg-slate-50/70 p-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600">Administrative Review</h4>
               
               <div>
-                <label className="text-[11px] font-medium text-slate-400">Reviewer Identification</label>
+                <label className="text-[11px] font-semibold text-slate-600">Reviewer Identification</label>
                 <input
                   type="text"
                   value={reviewer}
                   onChange={(e) => setReviewer(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-800 focus:border-emerald-600 focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] font-medium text-slate-400">Remarks / Action Log</label>
+                <label className="text-[11px] font-semibold text-slate-600">Remarks / Action Log</label>
                 <textarea
                   rows={2}
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
                   placeholder="Enter verification notes or resolution details..."
-                  className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-800 focus:border-emerald-600 focus:outline-none"
                 />
               </div>
 
               {actionMessage && (
                 <div
-                  className={`rounded-lg p-2 text-xs font-medium ${
-                    actionMessage.type === 'success' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'
+                  className={`rounded-lg p-2 text-xs font-semibold ${
+                    actionMessage.type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'
                   }`}
                 >
                   {actionMessage.text}
@@ -217,7 +217,7 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
                   type="button"
                   disabled={isUpdating}
                   onClick={() => handleAction('VERIFIED')}
-                  className="flex items-center justify-center gap-1 rounded-lg bg-emerald-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-emerald-500 disabled:opacity-50"
+                  className="flex items-center justify-center gap-1 rounded-lg bg-emerald-600 px-2 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
                 >
                   <CheckCircle className="h-3.5 w-3.5" /> Verify
                 </button>
@@ -225,7 +225,7 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
                   type="button"
                   disabled={isUpdating}
                   onClick={() => handleAction('REJECTED')}
-                  className="flex items-center justify-center gap-1 rounded-lg bg-rose-600/80 px-2 py-2 text-xs font-semibold text-white transition hover:bg-rose-500 disabled:opacity-50"
+                  className="flex items-center justify-center gap-1 rounded-lg bg-rose-600 px-2 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-rose-700 disabled:opacity-50"
                 >
                   <XCircle className="h-3.5 w-3.5" /> Reject
                 </button>
@@ -233,7 +233,7 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
                   type="button"
                   disabled={isUpdating}
                   onClick={() => handleAction('RESOLVED')}
-                  className="flex items-center justify-center gap-1 rounded-lg bg-sky-600 px-2 py-2 text-xs font-semibold text-white transition hover:bg-sky-500 disabled:opacity-50"
+                  className="flex items-center justify-center gap-1 rounded-lg bg-sky-600 px-2 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-sky-700 disabled:opacity-50"
                 >
                   <RefreshCw className="h-3.5 w-3.5" /> Resolve
                 </button>
@@ -247,4 +247,3 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
     </div>
   );
 }
-

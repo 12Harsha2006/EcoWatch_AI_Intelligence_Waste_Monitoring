@@ -7,7 +7,6 @@ import {
   CheckCheck,
   Camera,
   ExternalLink,
-  TrendingUp,
 } from 'lucide-react';
 import {
   BarChart,
@@ -19,16 +18,16 @@ import {
   PieChart,
   Pie,
   Cell,
+  CartesianGrid,
 } from 'recharts';
 import MetricCard from '../components/MetricCard';
 import StatusBadge from '../components/StatusBadge';
-import SimulationAlert from '../components/SimulationAlert';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EvidenceModal from '../components/EvidenceModal';
 import { incidentService } from '../services/incidentService';
 import { cameraService } from '../services/cameraService';
 
-const PIE_COLORS = ['#f59e0b', '#10b981', '#f43f5e', '#0284c7'];
+const PIE_COLORS = ['#f59e0b', '#059669', '#e11d48', '#0284c7'];
 
 export default function Overview() {
   const [metrics, setMetrics] = useState(null);
@@ -92,14 +91,13 @@ export default function Overview() {
 
   return (
     <div className="space-y-6">
-      {/* Simulation Advisory Banner */}
-      <SimulationAlert />
-
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Surveillance Command Center</h1>
-          <p className="text-xs text-slate-400">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+            Surveillance Overview
+          </h1>
+          <p className="text-xs text-slate-500">
             Real-time monitoring metrics, detection statistics, and unauthorized disposal alerts.
           </p>
         </div>
@@ -156,28 +154,29 @@ export default function Overview() {
       {/* Charts Section */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Location Hotspots */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md lg:col-span-2">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold tracking-wide text-white">
+            <h3 className="text-sm font-bold tracking-wide text-slate-800">
               Incidents by Location Hotspot
             </h3>
-            <span className="text-[11px] text-slate-400">Real-time surveillance zones</span>
+            <span className="text-[11px] font-medium text-slate-400">Surveillance zones</span>
           </div>
           <div className="h-64 w-full">
             {locationChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={locationChartData} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
-                  <XAxis dataKey="name" stroke="#64748b" fontSize={11} angle={-15} textAnchor="end" />
-                  <YAxis stroke="#64748b" fontSize={11} allowDecimals={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                  <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} angle={-15} textAnchor="end" />
+                  <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
-                    itemStyle={{ color: '#10b981' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
+                    itemStyle={{ color: '#059669', fontWeight: 600 }}
                   />
-                  <Bar dataKey="count" fill="#10b981" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="count" fill="#059669" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex h-full items-center justify-center text-xs text-slate-500">
+              <div className="flex h-full items-center justify-center text-xs text-slate-400">
                 No location records logged yet.
               </div>
             )}
@@ -185,8 +184,8 @@ export default function Overview() {
         </div>
 
         {/* Verification Status Breakdown */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md">
-          <h3 className="text-sm font-semibold tracking-wide text-white mb-4">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+          <h3 className="text-sm font-bold tracking-wide text-slate-800 mb-4">
             Incident Status Distribution
           </h3>
           <div className="h-48 w-full">
@@ -206,7 +205,7 @@ export default function Overview() {
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -215,8 +214,8 @@ export default function Overview() {
             {statusChartData.map((item, i) => (
               <div key={item.name} className="flex items-center gap-1.5">
                 <span className="h-2 w-2 rounded-full" style={{ backgroundColor: PIE_COLORS[i] }} />
-                <span className="text-slate-400 truncate">{item.name}:</span>
-                <span className="font-semibold text-slate-200">{item.value}</span>
+                <span className="text-slate-500 truncate">{item.name}:</span>
+                <span className="font-semibold text-slate-800">{item.value}</span>
               </div>
             ))}
           </div>
@@ -224,42 +223,42 @@ export default function Overview() {
       </div>
 
       {/* Recent Incidents Table */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md">
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-sm font-semibold tracking-wide text-white">Recent Surveillance Alerts</h3>
-            <p className="text-[11px] text-slate-400">Latest flagged events across monitored perimeters</p>
+            <h3 className="text-sm font-bold tracking-wide text-slate-800">Recent Surveillance Alerts</h3>
+            <p className="text-[11px] text-slate-500">Latest flagged events across monitored perimeters</p>
           </div>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400">
-                <th className="pb-3 font-semibold">Incident ID</th>
-                <th className="pb-3 font-semibold">Timestamp (UTC)</th>
-                <th className="pb-3 font-semibold">Camera Source</th>
-                <th className="pb-3 font-semibold">Location</th>
-                <th className="pb-3 font-semibold">Waste Category</th>
-                <th className="pb-3 font-semibold">Confidence</th>
-                <th className="pb-3 font-semibold">Status</th>
-                <th className="pb-3 font-semibold text-right">Inspect</th>
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
+                <th className="py-2.5 px-3 font-semibold rounded-l-lg">Incident ID</th>
+                <th className="py-2.5 px-3 font-semibold">Timestamp (UTC)</th>
+                <th className="py-2.5 px-3 font-semibold">Camera Source</th>
+                <th className="py-2.5 px-3 font-semibold">Location</th>
+                <th className="py-2.5 px-3 font-semibold">Waste Category</th>
+                <th className="py-2.5 px-3 font-semibold">Confidence</th>
+                <th className="py-2.5 px-3 font-semibold">Status</th>
+                <th className="py-2.5 px-3 font-semibold text-right rounded-r-lg">Inspect</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-100">
               {recentIncidents.slice(0, 8).map((inc) => (
-                <tr key={inc.id} className="transition hover:bg-slate-800/40">
-                  <td className="py-3 font-mono font-semibold text-emerald-400">{inc.id}</td>
-                  <td className="py-3 font-mono text-slate-400">{inc.timestamp?.replace('T', ' ').slice(0, 19)}</td>
-                  <td className="py-3 text-slate-300">{inc.camera_id}</td>
-                  <td className="py-3 text-slate-300">{inc.location}</td>
-                  <td className="py-3 capitalize text-amber-300">{inc.waste_category?.replace('_', ' ')}</td>
-                  <td className="py-3 text-slate-300">{(inc.confidence * 100).toFixed(0)}%</td>
-                  <td className="py-3"><StatusBadge status={inc.status} /></td>
-                  <td className="py-3 text-right">
+                <tr key={inc.id} className="transition hover:bg-slate-50/80">
+                  <td className="py-3 px-3 font-mono font-bold text-emerald-700">{inc.id}</td>
+                  <td className="py-3 px-3 font-mono text-slate-600">{inc.timestamp?.replace('T', ' ').slice(0, 19)}</td>
+                  <td className="py-3 px-3 text-slate-700 font-medium">{inc.camera_id}</td>
+                  <td className="py-3 px-3 text-slate-700">{inc.location}</td>
+                  <td className="py-3 px-3 capitalize font-medium text-amber-700">{inc.waste_category?.replace('_', ' ')}</td>
+                  <td className="py-3 px-3 text-slate-600 font-mono">{(inc.confidence * 100).toFixed(0)}%</td>
+                  <td className="py-3 px-3"><StatusBadge status={inc.status} /></td>
+                  <td className="py-3 px-3 text-right">
                     <button
                       onClick={() => setSelectedIncident(inc)}
-                      className="inline-flex items-center gap-1 rounded-lg bg-slate-800 px-2.5 py-1 text-slate-300 transition hover:bg-emerald-600 hover:text-white"
+                      className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-slate-700 font-semibold transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600"
                     >
                       <ExternalLink className="h-3 w-3" />
                       <span>Review</span>
@@ -269,7 +268,7 @@ export default function Overview() {
               ))}
               {recentIncidents.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="py-6 text-center text-slate-500">
+                  <td colSpan={8} className="py-8 text-center text-slate-400">
                     No surveillance incidents logged yet.
                   </td>
                 </tr>
@@ -293,4 +292,3 @@ export default function Overview() {
     </div>
   );
 }
-

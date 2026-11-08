@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FolderLock, Image, Video, Download, ExternalLink, Calendar, MapPin, Camera } from 'lucide-react';
 import StatusBadge from '../components/StatusBadge';
-import SimulationAlert from '../components/SimulationAlert';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import EvidenceModal from '../components/EvidenceModal';
@@ -11,7 +10,7 @@ export default function EvidenceManagement() {
   const [incidents, setIncidents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedIncident, setSelectedIncident] = useState(null);
-  const [viewType, setViewType] = useState('ALL'); // ALL, IMAGE, VIDEO
+  const [viewType, setViewType] = useState('ALL');
 
   const fetchEvidence = async () => {
     try {
@@ -31,39 +30,37 @@ export default function EvidenceManagement() {
 
   return (
     <div className="space-y-6">
-      <SimulationAlert />
-
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Surveillance Evidence Vault</h1>
-          <p className="text-xs text-slate-400">
-            Isolated cryptographic archive of captured snapshot frames, video clips, and metadata logs.
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Surveillance Evidence Vault</h1>
+          <p className="text-xs text-slate-500">
+            Isolated archive of captured snapshot frames, video clips, and metadata logs.
           </p>
         </div>
 
         {/* View mode toggle */}
-        <div className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/60 p-1">
+        <div className="flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-white p-1 shadow-sm">
           <button
             onClick={() => setViewType('ALL')}
-            className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
-              viewType === 'ALL' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
+              viewType === 'ALL' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             All Archives
           </button>
           <button
             onClick={() => setViewType('IMAGE')}
-            className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
-              viewType === 'IMAGE' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
+              viewType === 'IMAGE' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             Photos Only
           </button>
           <button
             onClick={() => setViewType('VIDEO')}
-            className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
-              viewType === 'VIDEO' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
+              viewType === 'VIDEO' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             Recordings Only
@@ -81,10 +78,10 @@ export default function EvidenceManagement() {
               <div
                 key={inc.id}
                 onClick={() => setSelectedIncident(inc)}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-xl hover:shadow-emerald-950/20"
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-md"
               >
                 {/* Image Snapshot Area */}
-                <div className="relative aspect-video w-full overflow-hidden bg-black/60">
+                <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
                   <img
                     src={imgUrl}
                     alt={`Evidence ${inc.id}`}
@@ -105,34 +102,34 @@ export default function EvidenceManagement() {
                 {/* Metadata details */}
                 <div className="p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-mono text-sm font-bold text-white group-hover:text-emerald-400 transition">
+                    <h3 className="font-mono text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">
                       {inc.id}
                     </h3>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-amber-400">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700">
                       {inc.waste_category?.replace('_', ' ')}
                     </span>
                   </div>
 
-                  <div className="space-y-1.5 text-xs text-slate-400">
+                  <div className="space-y-1.5 text-xs text-slate-500">
                     <div className="flex items-center gap-1.5 truncate">
-                      <MapPin className="h-3.5 w-3.5 text-slate-500 shrink-0" />
-                      <span className="truncate">{inc.location}</span>
+                      <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                      <span className="truncate font-medium text-slate-700">{inc.location}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <Camera className="h-3.5 w-3.5 text-slate-500 shrink-0" />
-                      <span className="font-mono">{inc.camera_id}</span>
+                      <Camera className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                      <span className="font-mono text-slate-600">{inc.camera_id}</span>
                     </div>
                     <div className="flex items-center gap-1.5 font-mono text-[11px]">
-                      <Calendar className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+                      <Calendar className="h-3.5 w-3.5 text-slate-400 shrink-0" />
                       <span>{inc.timestamp?.replace('T', ' ').slice(0, 19)}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-slate-800/80 pt-3">
-                    <span className="text-[11px] text-slate-500 font-mono">
+                  <div className="flex items-center justify-between border-t border-slate-100 pt-3">
+                    <span className="text-[11px] text-slate-400 font-mono">
                       Dir: {inc.evidence_folder?.split('\\').pop() || inc.id}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 group-hover:underline">
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 group-hover:underline">
                       <ExternalLink className="h-3.5 w-3.5" />
                       <span>Open Vault</span>
                     </span>
@@ -164,4 +161,3 @@ export default function EvidenceManagement() {
     </div>
   );
 }
-

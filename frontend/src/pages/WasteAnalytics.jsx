@@ -6,21 +6,17 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  PieChart,
-  Pie,
   Cell,
   LineChart,
   Line,
   CartesianGrid,
-  Legend,
 } from 'recharts';
-import { BarChart3, TrendingUp, Calendar, MapPin, Tag } from 'lucide-react';
-import SimulationAlert from '../components/SimulationAlert';
+import { BarChart3, Tag, MapPin } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import MetricCard from '../components/MetricCard';
 import { incidentService } from '../services/incidentService';
 
-const COLORS = ['#10b981', '#f59e0b', '#3b82f6', '#f43f5e', '#a855f7', '#06b6d4'];
+const COLORS = ['#059669', '#f59e0b', '#2563eb', '#e11d48', '#9333ea', '#0891b2'];
 
 export default function WasteAnalytics() {
   const [incidents, setIncidents] = useState([]);
@@ -82,31 +78,29 @@ export default function WasteAnalytics() {
   const trendData = Object.entries(dateCounts)
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([date, incidents]) => ({
-      date: date.slice(5), // MM-DD
+      date: date.slice(5),
       incidents,
     }));
 
   return (
     <div className="space-y-6">
-      <SimulationAlert />
-
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Waste Accumulation Analytics</h1>
-          <p className="text-xs text-slate-400">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Waste Accumulation Analytics</h1>
+          <p className="text-xs text-slate-500">
             Temporal patterns, disposal hotspots, and waste material classification statistics.
           </p>
         </div>
 
         {/* Time Filter */}
-        <div className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/60 p-1">
+        <div className="flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-white p-1 shadow-sm">
           {['ALL', 'MONTHLY', 'WEEKLY', 'DAILY'].map((range) => (
             <button
               key={range}
               onClick={() => setTimeRange(range)}
-              className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
-                timeRange === range ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
+                timeRange === range ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {range}
@@ -132,7 +126,7 @@ export default function WasteAnalytics() {
               : 'N/A'
           }
           icon={Tag}
-          delta="Highest frequency discarded material"
+          delta="Highest frequency material"
           color="amber"
         />
         <MetricCard
@@ -148,26 +142,27 @@ export default function WasteAnalytics() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Accumulation Timeline */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-white">Disposal Incidents Timeline</h3>
-            <span className="text-[11px] text-slate-400">Trend by timeline</span>
+            <h3 className="text-sm font-bold text-slate-800">Disposal Incidents Timeline</h3>
+            <span className="text-[11px] font-medium text-slate-400">Trend by timeline</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis dataKey="date" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} allowDecimals={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                <XAxis dataKey="date" stroke="#94a3b8" fontSize={11} />
+                <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
+                  itemStyle={{ color: '#059669', fontWeight: 600 }}
                 />
                 <Line
                   type="monotone"
                   dataKey="incidents"
-                  stroke="#10b981"
-                  strokeWidth={2}
-                  dot={{ fill: '#10b981', r: 4 }}
+                  stroke="#059669"
+                  strokeWidth={2.5}
+                  dot={{ fill: '#059669', r: 4 }}
                   activeDot={{ r: 6 }}
                 />
               </LineChart>
@@ -176,21 +171,21 @@ export default function WasteAnalytics() {
         </div>
 
         {/* Waste Category Breakdown */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-white">Material Category Distribution</h3>
-            <span className="text-[11px] text-slate-400">Classified debris types</span>
+            <h3 className="text-sm font-bold text-slate-800">Material Category Distribution</h3>
+            <span className="text-[11px] font-medium text-slate-400">Classified debris types</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={categoryChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis type="number" stroke="#64748b" fontSize={11} allowDecimals={false} />
-                <YAxis dataKey="name" type="category" stroke="#64748b" fontSize={10} width={110} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
+                <XAxis type="number" stroke="#94a3b8" fontSize={11} allowDecimals={false} />
+                <YAxis dataKey="name" type="category" stroke="#94a3b8" fontSize={10} width={110} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
                 />
-                <Bar dataKey="count" fill="#3b82f6" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="count" fill="#2563eb" radius={[0, 6, 6, 0]}>
                   {categoryChartData.map((_, index) => (
                     <Cell key={`cat-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
@@ -201,21 +196,22 @@ export default function WasteAnalytics() {
         </div>
 
         {/* Location Hotspots Bar Chart */}
-        <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md lg:col-span-2">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-white">Location Hotspot Analysis</h3>
-            <span className="text-[11px] text-slate-400">Perimeter vulnerability rankings</span>
+            <h3 className="text-sm font-bold text-slate-800">Location Hotspot Analysis</h3>
+            <span className="text-[11px] font-medium text-slate-400">Perimeter vulnerability rankings</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={locationChartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis dataKey="location" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} allowDecimals={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                <XAxis dataKey="location" stroke="#94a3b8" fontSize={11} />
+                <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
+                  itemStyle={{ color: '#d97706', fontWeight: 600 }}
                 />
-                <Bar dataKey="incidents" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="incidents" fill="#d97706" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -225,4 +221,3 @@ export default function WasteAnalytics() {
     </div>
   );
 }
-

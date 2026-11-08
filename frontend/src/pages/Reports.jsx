@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FileSpreadsheet, Download, Filter, Calendar, MapPin, CheckCircle } from 'lucide-react';
+import { Download } from 'lucide-react';
 import StatusBadge from '../components/StatusBadge';
-import SimulationAlert from '../components/SimulationAlert';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import { incidentService } from '../services/incidentService';
@@ -68,13 +67,11 @@ export default function Reports() {
 
   return (
     <div className="space-y-6">
-      <SimulationAlert />
-
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Compliance & Audit Reports</h1>
-          <p className="text-xs text-slate-400">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Compliance & Audit Reports</h1>
+          <p className="text-xs text-slate-500">
             Generate formal incident summaries, filter by operational sector, and export CSV compliance audits.
           </p>
         </div>
@@ -82,7 +79,7 @@ export default function Reports() {
         <button
           onClick={handleExportCsv}
           disabled={exporting || incidents.length === 0}
-          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-emerald-950/40 transition hover:bg-emerald-500 disabled:opacity-50"
+          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
         >
           <Download className="h-4 w-4" />
           <span>{exporting ? 'Generating CSV...' : 'Export Report (CSV)'}</span>
@@ -90,13 +87,13 @@ export default function Reports() {
       </div>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 backdrop-blur-md">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
         <div>
-          <label className="text-[11px] font-semibold text-slate-400">Verification Status</label>
+          <label className="text-[11px] font-semibold text-slate-600">Verification Status</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
           >
             <option value="ALL">All Statuses</option>
             <option value="PENDING">Pending</option>
@@ -107,11 +104,11 @@ export default function Reports() {
         </div>
 
         <div>
-          <label className="text-[11px] font-semibold text-slate-400">Camera Surveillance Node</label>
+          <label className="text-[11px] font-semibold text-slate-600">Camera Surveillance Node</label>
           <select
             value={cameraFilter}
             onChange={(e) => setCameraFilter(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
           >
             <option value="ALL">All Camera Nodes</option>
             {cameras.map((c) => (
@@ -123,11 +120,11 @@ export default function Reports() {
         </div>
 
         <div>
-          <label className="text-[11px] font-semibold text-slate-400">Waste Material Category</label>
+          <label className="text-[11px] font-semibold text-slate-600">Waste Material Category</label>
           <select
             value={wasteFilter}
             onChange={(e) => setWasteFilter(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
           >
             <option value="ALL">All Material Types</option>
             <option value="plastic_waste">Plastic Waste</option>
@@ -140,10 +137,10 @@ export default function Reports() {
       </div>
 
       {/* Report Data Table */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md">
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-semibold text-slate-400">
-            Audit Ledger: <strong className="text-white">{incidents.length}</strong> matching records
+          <span className="text-xs font-semibold text-slate-500">
+            Audit Ledger: <strong className="text-slate-900">{incidents.length}</strong> matching records
           </span>
         </div>
 
@@ -153,36 +150,36 @@ export default function Reports() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 font-semibold">
-                  <th className="pb-3">Incident ID</th>
-                  <th className="pb-3">Timestamp (UTC)</th>
-                  <th className="pb-3">Camera Node</th>
-                  <th className="pb-3">Location</th>
-                  <th className="pb-3">Material Category</th>
-                  <th className="pb-3">Confidence</th>
-                  <th className="pb-3">Audit Status</th>
-                  <th className="pb-3">Remarks / Action Log</th>
+                <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
+                  <th className="py-2.5 px-3 font-semibold rounded-l-lg">Incident ID</th>
+                  <th className="py-2.5 px-3 font-semibold">Timestamp (UTC)</th>
+                  <th className="py-2.5 px-3 font-semibold">Camera Node</th>
+                  <th className="py-2.5 px-3 font-semibold">Location</th>
+                  <th className="py-2.5 px-3 font-semibold">Material Category</th>
+                  <th className="py-2.5 px-3 font-semibold">Confidence</th>
+                  <th className="py-2.5 px-3 font-semibold">Audit Status</th>
+                  <th className="py-2.5 px-3 font-semibold text-right rounded-r-lg">Remarks / Action Log</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-slate-100">
                 {incidents.map((inc) => (
-                  <tr key={inc.id} className="transition hover:bg-slate-800/40">
-                    <td className="py-3 font-mono font-bold text-emerald-400">{inc.id}</td>
-                    <td className="py-3 font-mono text-slate-400">
+                  <tr key={inc.id} className="transition hover:bg-slate-50/80">
+                    <td className="py-3 px-3 font-mono font-bold text-emerald-700">{inc.id}</td>
+                    <td className="py-3 px-3 font-mono text-slate-600">
                       {inc.timestamp?.replace('T', ' ').slice(0, 19)}
                     </td>
-                    <td className="py-3 font-mono text-slate-300">{inc.camera_id}</td>
-                    <td className="py-3 text-slate-300">{inc.location}</td>
-                    <td className="py-3 capitalize text-amber-300">
+                    <td className="py-3 px-3 font-mono text-slate-700 font-medium">{inc.camera_id}</td>
+                    <td className="py-3 px-3 text-slate-700">{inc.location}</td>
+                    <td className="py-3 px-3 capitalize font-semibold text-amber-700">
                       {inc.waste_category?.replace('_', ' ')}
                     </td>
-                    <td className="py-3 font-mono text-slate-300">
+                    <td className="py-3 px-3 font-mono text-slate-700">
                       {(inc.confidence * 100).toFixed(0)}%
                     </td>
-                    <td className="py-3">
+                    <td className="py-3 px-3">
                       <StatusBadge status={inc.status} />
                     </td>
-                    <td className="py-3 text-slate-400 italic max-w-xs truncate">
+                    <td className="py-3 px-3 text-slate-500 italic max-w-xs truncate text-right">
                       {inc.remarks || 'No remarks recorded.'}
                     </td>
                   </tr>
@@ -194,11 +191,9 @@ export default function Reports() {
           <EmptyState
             title="No records to report"
             description="Adjust your status or location filters to view matching surveillance logs."
-            icon={FileSpreadsheet}
           />
         )}
       </div>
     </div>
   );
 }
-
