@@ -122,7 +122,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2 rounded-xl bg-emerald-500/10 px-3 py-1.5 border border-emerald-500/30 shrink-0">
           <ShieldCheck className="h-4 w-4 text-emerald-400" />
           <span className="text-xs font-bold tracking-wider text-emerald-300 uppercase">
-            Waste_Disposal_Detection
+            EcoWatch AI • Waste Surveillance
           </span>
         </div>
 

@@ -65,12 +65,12 @@ export default function LoginPage() {
       <header className="border-b border-[#1E2D42]/80 bg-[#0B1220]/90 px-6 py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#1B5E20] to-[#4CAF50] text-white shadow-md shadow-[#4CAF50]/20 group-hover:scale-105 transition-transform">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
               <span className="text-base font-bold tracking-tight text-white block">
-                Waste_Disposal_Detection
+                EcoWatch<span className="text-[#4CAF50]"> AI</span>
               </span>
               <span className="text-[9px] font-semibold uppercase tracking-widest text-emerald-400 block -mt-1">
                 Authorized Access Gateway
@@ -344,7 +344,7 @@ export default function LoginPage() {
 
       {/* Footer */}
       <footer className="border-t border-[#1E2D42]/80 bg-[#0B1220] py-4 px-6 text-center text-xs text-slate-500">
-        &copy; {new Date().getFullYear()} Waste_Disposal_Detection • Official Environmental Surveillance Gateway
+        &copy; {new Date().getFullYear()} EcoWatch AI • Official Environmental Surveillance Gateway
       </footer>
     </div>
   );

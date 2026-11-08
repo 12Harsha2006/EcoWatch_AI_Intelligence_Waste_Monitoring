@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
+  Sprout,
+  Leaf,
   ShieldCheck,
-  Eye,
   Camera,
-  Layers,
+  Cpu,
+  Eye,
+  AlertTriangle,
   FileCheck2,
   TrendingUp,
-  Cpu,
-  Video,
-  AlertTriangle,
-  Compass,
+  BarChart3,
+  Users,
+  Layers,
   ArrowRight,
   CheckCircle2,
   Lock,
-  Boxes,
-  Database,
-  Code2,
-  Activity,
+  ChevronRight,
   Menu,
   X,
-  Mail,
+  Sparkles,
+  TreePine,
+  Recycle,
+  Shield,
+  HeartHandshake,
+  Database,
+  Code2,
+  Zap,
   MapPin,
   ExternalLink,
-  ChevronRight,
-  Sparkles,
-  Zap
+  Activity,
+  FileSpreadsheet,
+  PackageCheck,
+  Check,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function LandingPage() {
   const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
@@ -43,84 +49,92 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1220] text-[#F8FAFC] selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#173B2A] font-sans selection:bg-[#4CAF50] selection:text-white">
       {/* ========================================================================= */}
-      {/* TOP NAVIGATION HEADER */}
+      {/* 3. NAVIGATION BAR */}
       {/* ========================================================================= */}
-      <header className="sticky top-0 z-50 border-b border-[#1E2D42]/80 bg-[#0B1220]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-[#E8F5E9] bg-white/95 backdrop-blur-md transition-all shadow-xs">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* Logo & Application Name */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-200">
-              <ShieldCheck className="h-6 w-6" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1B5E20] to-[#4CAF50] text-white shadow-md shadow-[#4CAF50]/20 group-hover:scale-105 transition-transform duration-200">
+              <Leaf className="h-6 w-6" />
             </div>
             <div>
-              <span className="text-lg font-bold tracking-tight text-white block">
-                Waste_Disposal_Detection
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-emerald-400 block -mt-1">
-                Environmental AI Platform
+              <div className="flex items-center gap-1.5">
+                <span className="text-xl font-extrabold tracking-tight text-[#173B2A]">
+                  EcoWatch<span className="text-[#4CAF50]"> AI</span>
+                </span>
+              </div>
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-[#4CAF50] block -mt-1">
+                Intelligent Waste Monitoring
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#94A3B8]">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-[#647067]">
             <button
               onClick={() => scrollToSection('hero')}
-              className="hover:text-emerald-400 transition-colors cursor-pointer"
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="hover:text-emerald-400 transition-colors cursor-pointer"
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection('features')}
-              className="hover:text-emerald-400 transition-colors cursor-pointer"
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection('how-it-works')}
-              className="hover:text-emerald-400 transition-colors cursor-pointer"
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
             >
               How It Works
             </button>
             <button
+              onClick={() => scrollToSection('impact')}
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
+            >
+              Impact
+            </button>
+            <button
               onClick={() => scrollToSection('technology')}
-              className="hover:text-emerald-400 transition-colors cursor-pointer"
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
             >
               Technology
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="hover:text-emerald-400 transition-colors cursor-pointer"
+              className="hover:text-[#1B5E20] transition-colors cursor-pointer"
             >
               Contact
             </button>
           </nav>
 
-          {/* CTA: Administrator Login */}
+          {/* Login Button */}
           <div className="hidden md:flex items-center gap-4">
             {isAuthenticated ? (
               <Link
                 to="/dashboard"
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-500 transition-all duration-200 hover:scale-[1.02]"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#4CAF50]/25 hover:from-[#174e1b] hover:to-[#43a047] transition-all duration-200 hover:-translate-y-0.5"
               >
-                <span>Access Dashboard</span>
+                <span>Dashboard Console</span>
                 <ChevronRight className="h-4 w-4" />
               </Link>
             ) : (
               <Link
                 to="/login"
-                className="flex items-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-5 py-2.5 text-sm font-semibold text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all duration-200 shadow-sm"
+                className="flex items-center gap-2 rounded-xl border border-[#4CAF50]/40 bg-[#E8F5E9] px-5 py-2.5 text-sm font-bold text-[#1B5E20] hover:bg-[#1B5E20] hover:text-white transition-all duration-200 shadow-xs"
               >
-                <Lock className="h-4 w-4" />
-                <span>Administrator Login</span>
+                <Lock className="h-4 w-4 text-[#4CAF50]" />
+                <span>Admin Login</span>
               </Link>
             )}
           </div>
@@ -128,59 +142,65 @@ export default function LandingPage() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-[#111C2E]"
+            className="md:hidden p-2 rounded-xl text-[#173B2A] hover:bg-[#E8F5E9] transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-[#1E2D42] bg-[#0B1220] px-6 py-4 space-y-3">
+          <div className="md:hidden border-b border-[#E8F5E9] bg-white px-6 py-4 space-y-3 animate-in fade-in">
             <button
               onClick={() => scrollToSection('hero')}
-              className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-emerald-400"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-emerald-400"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
             >
               About
             </button>
             <button
               onClick={() => scrollToSection('features')}
-              className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-emerald-400"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection('how-it-works')}
-              className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-emerald-400"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
             >
               How It Works
             </button>
             <button
+              onClick={() => scrollToSection('impact')}
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
+            >
+              Impact
+            </button>
+            <button
               onClick={() => scrollToSection('technology')}
-              className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-emerald-400"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
             >
               Technology
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="block w-full text-left py-2 text-sm font-medium text-slate-300 hover:text-emerald-400"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#173B2A] hover:text-[#4CAF50]"
             >
               Contact
             </button>
-            <div className="pt-2 border-t border-[#1E2D42]">
+            <div className="pt-2 border-t border-[#E8F5E9]">
               <Link
                 to={isAuthenticated ? "/dashboard" : "/login"}
-                className="flex items-center justify-center gap-2 w-full rounded-xl bg-emerald-500 py-2.5 text-sm font-semibold text-white"
+                className="flex items-center justify-center gap-2 w-full rounded-xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] py-2.5 text-sm font-bold text-white shadow-md shadow-[#4CAF50]/20"
               >
                 <Lock className="h-4 w-4" />
-                <span>{isAuthenticated ? "Go to Dashboard" : "Administrator Login"}</span>
+                <span>{isAuthenticated ? "Go to Dashboard" : "Admin Login"}</span>
               </Link>
             </div>
           </div>
@@ -188,135 +208,124 @@ export default function LandingPage() {
       </header>
 
       {/* ========================================================================= */}
-      {/* HERO SECTION */}
+      {/* 4. HERO SECTION */}
       {/* ========================================================================= */}
-      <section id="hero" className="relative overflow-hidden py-16 lg:py-24 border-b border-[#1E2D42]/60">
-        {/* Subtle Background Glows */}
-        <div className="absolute top-1/4 left-1/4 -z-10 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/10 blur-[120px]" />
-        <div className="absolute top-1/3 right-1/4 -z-10 h-80 w-80 rounded-full bg-teal-500/10 blur-[100px]" />
+      <section
+        id="hero"
+        className="relative overflow-hidden bg-gradient-to-b from-[#F8F9F0] via-white to-[#E8F5E9]/30 py-16 sm:py-20 lg:py-28 border-b border-[#E8F5E9]"
+      >
+        {/* Soft Eco Gradient Orbs */}
+        <div className="absolute top-10 left-10 -z-10 h-96 w-96 rounded-full bg-[#E8F5E9] blur-3xl opacity-70" />
+        <div className="absolute bottom-10 right-10 -z-10 h-96 w-96 rounded-full bg-[#C8E6C9] blur-3xl opacity-50" />
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-400">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 radar-dot" />
-                <span>Next-Gen Environmental Surveillance</span>
+              {/* Nature Badge */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#4CAF50]/30 bg-white px-4 py-1.5 text-xs font-bold text-[#1B5E20] shadow-xs">
+                <span className="flex h-2 w-2 rounded-full bg-[#4CAF50] eco-pulse" />
+                <span className="tracking-wide">AI-Powered Environmental Surveillance</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-                Smarter Waste Monitoring. <br />
-                <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">
-                  Cleaner Communities.
+              {/* Main Heading */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#173B2A] leading-[1.15]">
+                Smart AI Monitoring for a{' '}
+                <span className="bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] bg-clip-text text-transparent">
+                  Cleaner Tomorrow
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-[#94A3B8] max-w-2xl leading-relaxed">
-                An intelligent computer vision-powered monitoring platform designed to identify unauthorized waste disposal activities, monitor waste accumulation and support faster environmental response.
+              {/* Supporting Description */}
+              <p className="text-base sm:text-lg text-[#647067] max-w-2xl leading-relaxed">
+                EcoWatch AI uses intelligent computer vision technology to detect and monitor suspected unauthorized waste disposal activities, helping communities maintain cleaner and healthier surroundings.
               </p>
 
-              {/* Action Buttons */}
+              {/* Two Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   onClick={() => scrollToSection('features')}
-                  className="flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-500 transition-all duration-200 hover:-translate-y-0.5"
+                  className="flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#4CAF50]/25 hover:from-[#174e1b] hover:to-[#43a047] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
                 >
-                  <span>Explore Platform</span>
+                  <span>Explore Features</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
 
                 <Link
                   to="/login"
-                  className="flex items-center gap-2 rounded-xl border border-[#1E2D42] bg-[#111C2E] px-6 py-3.5 text-sm font-semibold text-white hover:border-emerald-500/50 hover:bg-[#1A273D] transition-all duration-200"
+                  className="flex items-center gap-2 rounded-xl border-2 border-[#1B5E20] bg-white px-7 py-3.5 text-sm font-bold text-[#1B5E20] hover:bg-[#E8F5E9] transition-all duration-200 shadow-xs"
                 >
-                  <Lock className="h-4 w-4 text-emerald-400" />
-                  <span>Administrator Login</span>
+                  <Lock className="h-4 w-4 text-[#4CAF50]" />
+                  <span>Admin Login</span>
                 </Link>
               </div>
 
-              {/* Key Platform Highlights */}
-              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-[#1E2D42]/80 max-w-lg">
+              {/* Startup Credibility Highlights */}
+              <div className="pt-8 grid grid-cols-3 gap-6 border-t border-[#E8F5E9] max-w-lg">
                 <div>
-                  <div className="text-emerald-400 font-bold text-sm">24/7 Node Support</div>
-                  <div className="text-xs text-[#94A3B8]">CCTV & Webcams</div>
+                  <div className="text-[#1B5E20] font-extrabold text-base">24/7 Monitoring</div>
+                  <div className="text-xs text-[#647067]">CCTV & Optical Feeds</div>
                 </div>
                 <div>
-                  <div className="text-teal-400 font-bold text-sm">Automated Audits</div>
-                  <div className="text-xs text-[#94A3B8]">Evidence Vault</div>
+                  <div className="text-[#1B5E20] font-extrabold text-base">Zero False Claims</div>
+                  <div className="text-xs text-[#647067]">Auditable Evidence</div>
                 </div>
                 <div>
-                  <div className="text-emerald-400 font-bold text-sm">Modular Vision</div>
-                  <div className="text-xs text-[#94A3B8]">YOLO / Grounding DINO</div>
+                  <div className="text-[#1B5E20] font-extrabold text-base">Eco-Friendly</div>
+                  <div className="text-xs text-[#647067]">Clean Communities</div>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual: High-Tech Simulated CCTV Surveillance HUD */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-3 shadow-2xl shadow-emerald-950/40">
-                {/* HUD Top Bar */}
-                <div className="flex items-center justify-between border-b border-[#1E2D42] pb-3 mb-3 px-2">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-rose-500 animate-ping" />
-                    <span className="text-xs font-mono font-bold text-rose-400 tracking-wider">
-                      REC • LIVE SURVEILLANCE
-                    </span>
+            {/* Right Visual: High-Quality Environmental Photograph with Floating Cards */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-3xl p-3 bg-gradient-to-br from-[#E8F5E9] to-white border border-[#C8E6C9] shadow-xl shadow-[#1B5E20]/5">
+                {/* Main Environmental Photo */}
+                <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-[#E8F5E9]">
+                  <img
+                    src="/assets/hero-clean-city.jpg"
+                    alt="Clean green eco-friendly city park and sustainable community"
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src =
+                        'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#173B2A]/40 via-transparent to-transparent" />
+                </div>
+
+                {/* Floating Information Card 1: AI-Powered Detection */}
+                <div className="absolute -top-4 -left-4 sm:top-6 sm:-left-6 rounded-2xl bg-white/95 p-3.5 shadow-lg border border-[#C8E6C9] backdrop-blur-md animate-float-1 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E8F5E9] text-[#1B5E20]">
+                    <Cpu className="h-5 w-5" />
                   </div>
-                  <div className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                    CAM-04 [SIMULATED]
+                  <div>
+                    <p className="text-xs font-bold text-[#173B2A]">AI-Powered Detection</p>
+                    <p className="text-[10px] text-[#647067]">Vision-Based Analysis</p>
                   </div>
                 </div>
 
-                {/* Surveillance Viewport Window */}
-                <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-[#070D18] border border-[#1E2D42]/60 flex flex-col justify-between p-4">
-                  {/* Grid Lines Pattern Overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(#1E2D42_1px,transparent_1px)] [background-size:16px_16px] opacity-30 pointer-events-none" />
-
-                  {/* Corner Targets */}
-                  <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-emerald-500/60" />
-                  <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-emerald-500/60" />
-                  <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-emerald-500/60" />
-                  <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-emerald-500/60" />
-
-                  {/* Top HUD Telemetry */}
-                  <div className="relative z-10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                    <div>SECTOR: RIVERFRONT_PARK_NORTH</div>
-                    <div className="text-emerald-400">FPS: 30.0 • 1080P</div>
+                {/* Floating Information Card 2: Smart Waste Monitoring */}
+                <div className="absolute -bottom-4 -left-2 sm:bottom-6 sm:-left-4 rounded-2xl bg-white/95 p-3.5 shadow-lg border border-[#C8E6C9] backdrop-blur-md animate-float-2 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E8F5E9] text-[#4CAF50]">
+                    <Recycle className="h-5 w-5" />
                   </div>
-
-                  {/* Bounding Box 1: Simulated Person Detection */}
-                  <div className="relative z-10 mx-auto w-3/4 h-28 border border-dashed border-teal-400/70 rounded-lg p-2 bg-teal-500/5 backdrop-blur-[1px]">
-                    <div className="flex items-center justify-between text-[10px] font-mono text-teal-300">
-                      <span>[ID: 104] PERSON</span>
-                      <span className="bg-teal-500/20 px-1 rounded">CONF: 0.96</span>
-                    </div>
-                    <div className="mt-2 text-[10px] text-slate-300 font-mono">
-                      MOTION: UNLOADING ACTION DETECTED
-                    </div>
-
-                    {/* Nested Bounding Box 2: Detected Waste Pile */}
-                    <div className="mt-2 w-28 border-2 border-rose-500 rounded p-1 bg-rose-500/20">
-                      <div className="text-[9px] font-bold text-rose-300 font-mono flex items-center gap-1">
-                        <AlertTriangle className="h-3 w-3 text-rose-400" />
-                        <span>SUSPECTED_WASTE</span>
-                      </div>
-                      <div className="text-[8px] text-rose-200 font-mono">CONF: 0.94 [SIM]</div>
-                    </div>
-                  </div>
-
-                  {/* HUD Bottom Info Bar */}
-                  <div className="relative z-10 flex items-center justify-between border-t border-[#1E2D42]/70 pt-2 text-[10px] font-mono">
-                    <span className="text-amber-400 flex items-center gap-1">
-                      <AlertTriangle className="h-3 w-3" /> RESTRICTED ZONE INFRINGEMENT
-                    </span>
-                    <span className="text-slate-400">MOCK PROVIDER ACTIVE</span>
+                  <div>
+                    <p className="text-xs font-bold text-[#173B2A]">Smart Waste Monitoring</p>
+                    <p className="text-[10px] text-[#647067]">Perimeter Zone Alerts</p>
                   </div>
                 </div>
 
-                {/* Sub-telemetry strip */}
-                <div className="mt-3 flex items-center justify-between text-xs text-[#94A3B8] px-1">
-                  <span>Tamper-Resistant Storage</span>
-                  <span className="text-emerald-400 font-medium">Auto-Archived to Evidence Vault</span>
+                {/* Floating Information Card 3: Cleaner Communities */}
+                <div className="absolute -bottom-4 -right-2 sm:bottom-10 sm:-right-6 rounded-2xl bg-white/95 p-3.5 shadow-lg border border-[#C8E6C9] backdrop-blur-md animate-float-3 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1B5E20] text-white">
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-[#173B2A]">Cleaner Communities</p>
+                    <p className="text-[10px] text-[#647067]">Sustainable Cities</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -325,169 +334,200 @@ export default function LandingPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* ABOUT SECTION */}
+      {/* 5. ABOUT ECOWATCH AI */}
       {/* ========================================================================= */}
-      <section id="about" className="py-20 bg-[#0B1220] border-b border-[#1E2D42]/60">
+      <section id="about" className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-[#E8F5E9]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-teal-400 uppercase tracking-wider">
-              About The System
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Image: Waste Segregation & Proper Cleanliness */}
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <div className="relative rounded-3xl p-3 bg-gradient-to-br from-[#E8F5E9] to-white border border-[#C8E6C9] shadow-lg">
+                <div className="aspect-4/3 w-full overflow-hidden rounded-2xl bg-[#E8F5E9]">
+                  <img
+                    src="/assets/about-waste-management.jpg"
+                    alt="Proper waste management, colorful recycling bins and environmental cleanliness"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src =
+                        'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1000&q=80';
+                    }}
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between px-2 text-xs text-[#647067]">
+                  <span className="font-semibold text-[#1B5E20]">Community Waste Segregation</span>
+                  <span>Modern Environmental Best Practices</span>
+                </div>
+              </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Transforming Waste Monitoring Through Artificial Intelligence
+
+            {/* Right Text: Purpose & Principles */}
+            <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#4CAF50]/30 bg-[#E8F5E9] px-4 py-1 text-xs font-bold text-[#1B5E20]">
+                <Sprout className="h-4 w-4 text-[#4CAF50]" />
+                <span>About EcoWatch AI</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#173B2A] leading-tight">
+                Building a Cleaner Future Through Intelligent Technology
+              </h2>
+
+              <p className="text-base text-[#647067] leading-relaxed">
+                EcoWatch AI is an AI-powered waste disposal monitoring system designed to identify suspicious waste disposal activities using computer vision and camera-based monitoring.
+              </p>
+
+              <p className="text-sm text-[#647067] leading-relaxed">
+                By bridging modern optical cameras with intelligent spatial evaluation, the platform transforms manual municipal monitoring into an automated, responsive environmental protection network.
+              </p>
+
+              {/* Value Checkmark List */}
+              <div className="space-y-3.5 pt-2">
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#1B5E20]">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-[#173B2A]">Proactive Environmental Protection</h4>
+                    <p className="text-xs text-[#647067]">
+                      Dispatches early notifications before illegal dumps grow into unmanageable environmental hazards.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#1B5E20]">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-[#173B2A]">Restricted Zone Compliance</h4>
+                    <p className="text-xs text-[#647067]">
+                      Monitors vulnerable public parks, drainage channels, riverfronts, and vacant plots with custom polygon borders.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#1B5E20]">
+                    <Check className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-[#173B2A]">Defensible Evidence Vault</h4>
+                    <p className="text-xs text-[#647067]">
+                      Captures timestamped image frames and video recordings with full audit logs for administrative verification.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. FEATURES SECTION (8 CARDS) */}
+      {/* ========================================================================= */}
+      <section id="features" className="py-20 lg:py-28 bg-[#F8F9F0] border-b border-[#E8F5E9]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center space-y-3 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#4CAF50]/30 bg-[#E8F5E9] px-4 py-1 text-xs font-bold text-[#1B5E20]">
+              <Leaf className="h-4 w-4 text-[#4CAF50]" />
+              <span>Core Capabilities</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#173B2A]">
+              Powerful Features for Smarter Waste Management
             </h2>
-            <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-              Traditional waste monitoring often depends on manual inspections and public complaints. Our platform introduces an intelligent monitoring approach that uses computer vision and automated event analysis to identify suspected unauthorized waste disposal activities and provide actionable evidence.
+            <p className="text-sm sm:text-base text-[#647067]">
+              Purpose-built capabilities engineered to detect, record, and resolve unauthorized waste disposal with speed and accuracy.
             </p>
           </div>
 
-          {/* Three Key Pillars */}
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-emerald-500/40 transition-colors">
-              <div className="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5">
-                <Compass className="h-6 w-6" />
+          {/* 8 Feature Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* 1. AI-Based Person Detection */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <Users className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Proactive Surveillance</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Shifts municipal enforcement from reactive cleanup after citizen complaints to proactive real-time surveillance of high-risk dumping sectors.
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">AI-Based Person Detection</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Identifies people appearing in camera footage.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-teal-500/40 transition-colors">
-              <div className="h-12 w-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-5">
-                <Activity className="h-6 w-6" />
+            {/* 2. Waste Object Detection */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <Recycle className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Automated Event Triaging</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Correlates restricted geographical boundaries with person and object presence to filter out benign movement from dumping events.
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Waste Object Detection</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Identifies supported waste objects using computer vision models.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-emerald-500/40 transition-colors">
-              <div className="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-5">
+            {/* 3. Suspicious Dumping Detection */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <AlertTriangle className="h-6 w-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Suspicious Dumping Detection</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Analyses movement and object placement to identify suspected dumping events.
+              </p>
+            </div>
+
+            {/* 4. Restricted Area Monitoring */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <ShieldCheck className="h-6 w-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Restricted Area Monitoring</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Monitors predefined areas where waste disposal is not permitted.
+              </p>
+            </div>
+
+            {/* 5. Evidence Collection */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
                 <FileCheck2 className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Tamper-Evident Evidence</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Logs photographic snapshots, video clips, and cryptographic verification logs so enforcement teams hold defensible proof for action.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* FEATURES SECTION */}
-      {/* ========================================================================= */}
-      <section id="features" className="py-20 bg-[#0B1220]/70 border-b border-[#1E2D42]/60">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center space-y-3 mb-14">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 uppercase tracking-wider">
-              Core Capabilities
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              End-to-End Environmental Surveillance Features
-            </h2>
-            <p className="text-sm sm:text-base text-[#94A3B8]">
-              Purpose-built capabilities designed specifically for environmental supervisors and municipal enforcement teams.
-            </p>
-          </div>
-
-          {/* 6 Feature Cards requested by user */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* 1. Intelligent Waste Detection */}
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <Eye className="h-6 w-6" />
-                </div>
-                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
-                  VISION
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Intelligent Waste Detection</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Identifies visible waste and relevant objects using computer vision.
-              </p>
-            </div>
-
-            {/* 2. Unauthorized Disposal Monitoring */}
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-teal-500/50 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-all">
-                  <AlertTriangle className="h-6 w-6" />
-                </div>
-                <span className="text-[11px] font-mono text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">
-                  ZONES
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Unauthorized Disposal Monitoring</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Analyses suspected waste disposal activities in predefined restricted areas.
-              </p>
-            </div>
-
-            {/* 3. Real-Time Surveillance */}
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <Video className="h-6 w-6" />
-                </div>
-                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
-                  STREAM
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Real-Time Surveillance</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Supports video-based monitoring through connected cameras.
-              </p>
-            </div>
-
-            {/* 4. Evidence Collection */}
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-teal-500/50 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-all">
-                  <FileCheck2 className="h-6 w-6" />
-                </div>
-                <span className="text-[11px] font-mono text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">
-                  VAULT
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Evidence Collection</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Automatically stores incident images, timestamps and relevant video clips.
-              </p>
-            </div>
-
-            {/* 5. Waste Accumulation Analysis */}
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                  <TrendingUp className="h-6 w-6" />
-                </div>
-                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
-                  ANALYTICS
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Waste Accumulation Analysis</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Monitors changes in waste accumulation over time.
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Evidence Collection</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Captures relevant images and video clips for administrator review.
               </p>
             </div>
 
             {/* 6. Incident Management */}
-            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 hover:border-teal-500/50 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-12 w-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-all">
-                  <ShieldCheck className="h-6 w-6" />
-                </div>
-                <span className="text-[11px] font-mono text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">
-                  WORKFLOW
-                </span>
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <PackageCheck className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Incident Management</h3>
-              <p className="text-sm text-[#94A3B8] leading-relaxed">
-                Helps administrators review, verify and manage detected incidents.
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Incident Management</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Allows administrators to review and manage reported incidents.
+              </p>
+            </div>
+
+            {/* 7. Waste Monitoring */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <TrendingUp className="h-6 w-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Waste Monitoring</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Helps monitor changes in waste accumulation over time.
+              </p>
+            </div>
+
+            {/* 8. Analytics and Reports */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] flex items-center justify-center text-[#1B5E20] group-hover:bg-[#1B5E20] group-hover:text-white transition-colors mb-5">
+                <BarChart3 className="h-6 w-6" />
+              </div>
+              <h3 className="text-base font-bold text-[#173B2A] mb-2">Analytics and Reports</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Presents monitoring information through visual reports and charts.
               </p>
             </div>
           </div>
@@ -495,97 +535,106 @@ export default function LandingPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* HOW IT WORKS SECTION */}
+      {/* 7. HOW IT WORKS */}
       {/* ========================================================================= */}
-      <section id="how-it-works" className="py-20 bg-[#0B1220] border-b border-[#1E2D42]/60">
+      <section id="how-it-works" className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-[#E8F5E9]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center space-y-3 mb-16">
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-teal-400 uppercase tracking-wider">
-              Workflow Pipeline
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#4CAF50]/30 bg-[#E8F5E9] px-4 py-1 text-xs font-bold text-[#1B5E20]">
+              <Activity className="h-4 w-4 text-[#4CAF50]" />
+              <span>Operational Pipeline</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              How the System Operates
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#173B2A]">
+              How EcoWatch AI Works
             </h2>
-            <p className="text-sm sm:text-base text-[#94A3B8]">
-              A continuous, automated four-stage pipeline linking camera input to administrator resolution.
+            <p className="text-sm sm:text-base text-[#647067]">
+              A continuous, automated four-stage process connecting camera surveillance to municipal verification.
             </p>
           </div>
 
-          {/* 4 Steps requested by user */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            {/* Step 1 */}
-            <div className="relative rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 flex flex-col justify-between">
+          {/* Horizontal Process Flow (4 Steps) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {/* Step 1: Camera Monitoring */}
+            <div className="relative rounded-2xl border border-[#E8F5E9] bg-[#F8F9F0] p-6 flex flex-col justify-between hover:border-[#4CAF50]/40 transition-all">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 font-bold text-emerald-400">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1B5E20] text-white font-extrabold text-base shadow-sm">
                     01
                   </div>
-                  <Camera className="h-5 w-5 text-slate-500" />
+                  <div className="p-2 rounded-xl bg-white border border-[#E8F5E9] text-[#1B5E20]">
+                    <Camera className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Step 1: Video Acquisition</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  Camera captures the monitored environment.
+                <h3 className="text-base font-bold text-[#173B2A] mb-2">Step 1: Camera Monitoring</h3>
+                <p className="text-xs text-[#647067] leading-relaxed">
+                  Camera footage is captured using CCTV or a webcam.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#1E2D42]/70 text-xs text-emerald-400 font-mono">
-                Webcam • CCTV • Files
+              <div className="mt-6 pt-4 border-t border-[#E8F5E9] text-[11px] font-semibold text-[#1B5E20]">
+                CCTV • Webcams • Video Uploads
               </div>
             </div>
 
-            {/* Step 2 */}
-            <div className="relative rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 flex flex-col justify-between">
+            {/* Step 2: AI Detection */}
+            <div className="relative rounded-2xl border border-[#E8F5E9] bg-[#F8F9F0] p-6 flex flex-col justify-between hover:border-[#4CAF50]/40 transition-all">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500/10 border border-teal-500/30 font-bold text-teal-400">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#4CAF50] text-white font-extrabold text-base shadow-sm">
                     02
                   </div>
-                  <Cpu className="h-5 w-5 text-slate-500" />
+                  <div className="p-2 rounded-xl bg-white border border-[#E8F5E9] text-[#4CAF50]">
+                    <Cpu className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Step 2: AI Analysis</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  Computer vision models analyse video frames and identify relevant objects.
+                <h3 className="text-base font-bold text-[#173B2A] mb-2">Step 2: AI Detection</h3>
+                <p className="text-xs text-[#647067] leading-relaxed">
+                  Computer vision models analyse people and supported waste objects.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#1E2D42]/70 text-xs text-teal-400 font-mono">
-                Person & Waste Detection
+              <div className="mt-6 pt-4 border-t border-[#E8F5E9] text-[11px] font-semibold text-[#4CAF50]">
+                Bounding Boxes • Confidence Scoring
               </div>
             </div>
 
-            {/* Step 3 */}
-            <div className="relative rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 flex flex-col justify-between">
+            {/* Step 3: Activity Analysis */}
+            <div className="relative rounded-2xl border border-[#E8F5E9] bg-[#F8F9F0] p-6 flex flex-col justify-between hover:border-[#4CAF50]/40 transition-all">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 font-bold text-emerald-400">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#1B5E20] text-white font-extrabold text-base shadow-sm">
                     03
                   </div>
-                  <AlertTriangle className="h-5 w-5 text-slate-500" />
+                  <div className="p-2 rounded-xl bg-white border border-[#E8F5E9] text-[#1B5E20]">
+                    <AlertTriangle className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Step 3: Incident Identification</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  The system analyses activity patterns and identifies suspected unauthorized disposal.
+                <h3 className="text-base font-bold text-[#173B2A] mb-2">Step 3: Activity Analysis</h3>
+                <p className="text-xs text-[#647067] leading-relaxed">
+                  The system analyses object movement and placement to identify suspected dumping activities.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#1E2D42]/70 text-xs text-emerald-400 font-mono">
-                Restricted Zone Evaluation
+              <div className="mt-6 pt-4 border-t border-[#E8F5E9] text-[11px] font-semibold text-[#1B5E20]">
+                Spatial Zones • Cooldown Tracking
               </div>
             </div>
 
-            {/* Step 4 */}
-            <div className="relative rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 flex flex-col justify-between">
+            {/* Step 4: Admin Verification */}
+            <div className="relative rounded-2xl border border-[#E8F5E9] bg-[#F8F9F0] p-6 flex flex-col justify-between hover:border-[#4CAF50]/40 transition-all">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500/10 border border-teal-500/30 font-bold text-teal-400">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#4CAF50] text-white font-extrabold text-base shadow-sm">
                     04
                   </div>
-                  <FileCheck2 className="h-5 w-5 text-slate-500" />
+                  <div className="p-2 rounded-xl bg-white border border-[#E8F5E9] text-[#4CAF50]">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">Step 4: Monitoring and Reporting</h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  Evidence is stored and administrators can review incidents through the dashboard.
+                <h3 className="text-base font-bold text-[#173B2A] mb-2">Step 4: Admin Verification</h3>
+                <p className="text-xs text-[#647067] leading-relaxed">
+                  Evidence is stored and administrators can review and verify reported incidents.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#1E2D42]/70 text-xs text-teal-400 font-mono">
-                Verification & Audit Logs
+              <div className="mt-6 pt-4 border-t border-[#E8F5E9] text-[11px] font-semibold text-[#4CAF50]">
+                Image Vault • CSV Compliance Export
               </div>
             </div>
           </div>
@@ -593,227 +642,225 @@ export default function LandingPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* PROJECT IMPACT SECTION */}
+      {/* 8. ENVIRONMENTAL IMPACT SECTION */}
       {/* ========================================================================= */}
-      <section className="py-20 bg-[#0B1220]/70 border-b border-[#1E2D42]/60">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 uppercase tracking-wider">
-                Civic & Environmental Value
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
-                Measurable Project Impact On Urban Ecosystems
-              </h2>
-              <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">
-                By replacing sluggish manual patrolling with continuous visual telemetry, the platform provides municipal authorities with defensible intelligence to curtail illicit dumping before ecological degradation becomes irreversible.
-              </p>
-              <div className="pt-2">
-                <Link
-                  to="/login"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300"
-                >
-                  <span>Explore Operational Controls</span>
-                  <ChevronRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Benefit 1 */}
-              <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />
-                  <h4 className="font-bold text-white text-sm">Faster Incident Identification</h4>
-                </div>
-                <p className="text-xs text-[#94A3B8] leading-relaxed pl-8">
-                  Reduces the latency between an illegal dumping occurrence and municipal detection from days or weeks to immediate digital alerts.
-                </p>
-              </div>
-
-              {/* Benefit 2 */}
-              <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-teal-400 shrink-0" />
-                  <h4 className="font-bold text-white text-sm">Evidence-Backed Reporting</h4>
-                </div>
-                <p className="text-xs text-[#94A3B8] leading-relaxed pl-8">
-                  Generates tamper-resistant records featuring timestamped snapshots and video clips suitable for regulatory citations.
-                </p>
-              </div>
-
-              {/* Benefit 3 */}
-              <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />
-                  <h4 className="font-bold text-white text-sm">Deterrent to Illegal Dumping</h4>
-                </div>
-                <p className="text-xs text-[#94A3B8] leading-relaxed pl-8">
-                  Visible surveillance monitoring and consistent incident enforcement foster stronger civic accountability across monitored corridors.
-                </p>
-              </div>
-
-              {/* Benefit 4 */}
-              <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-teal-400 shrink-0" />
-                  <h4 className="font-bold text-white text-sm">Data-Driven Environmental Management</h4>
-                </div>
-                <p className="text-xs text-[#94A3B8] leading-relaxed pl-8">
-                  Equips city planners with longitudinal accumulation patterns to optimize bin placements and targeted clean-up dispatches.
-                </p>
-              </div>
-
-              {/* Benefit 5 */}
-              <div className="sm:col-span-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                <div className="flex items-center gap-3 mb-1">
-                  <Sparkles className="h-5 w-5 text-emerald-400 shrink-0" />
-                  <h4 className="font-bold text-white text-sm">Cleaner, Healthier Public Spaces</h4>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed pl-8">
-                  Safeguards public parks, drainage channels, riverfronts, and vacant plots from contamination, vector breeding, and environmental hazards.
-                </p>
-              </div>
-            </div>
-          </div>
+      <section
+        id="impact"
+        className="relative py-24 lg:py-32 overflow-hidden border-b border-[#E8F5E9]"
+      >
+        {/* Background Wide Nature Photograph with Light Overlay */}
+        <div className="absolute inset-0 -z-20">
+          <img
+            src="/assets/impact-green-nature.jpg"
+            alt="Lush green natural canopy and clean sustainable environment"
+            className="h-full w-full object-cover object-center"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80';
+            }}
+          />
         </div>
-      </section>
+        {/* Bright Eco-friendly Overlay Ensuring 100% Text Readability */}
+        <div className="absolute inset-0 -z-10 bg-white/90 backdrop-blur-[2px]" />
 
-      {/* ========================================================================= */}
-      {/* ABOUT THE TECHNOLOGY SECTION */}
-      {/* ========================================================================= */}
-      <section id="technology" className="py-20 bg-[#0B1220] border-b border-[#1E2D42]/60">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 uppercase tracking-wider">
-              Architecture & Stack
+          <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#4CAF50]/30 bg-[#E8F5E9] px-4 py-1 text-xs font-bold text-[#1B5E20]">
+              <TreePine className="h-4 w-4 text-[#4CAF50]" />
+              <span>Civic Sustainability</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Built on Modern Open-Source Engineering
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#173B2A]">
+              Technology for a Greener Tomorrow
             </h2>
-            <p className="text-sm sm:text-base text-[#94A3B8]">
-              The platform decouples video capture, event rule processing, and user interfaces so high-capacity neural vision models can be plugged in seamlessly.
+            <p className="text-base text-[#647067] leading-relaxed">
+              By providing smart visual telemetry, EcoWatch AI empowers cities and municipalities to build cleaner, more sustainable living spaces for future generations.
             </p>
           </div>
 
-          {/* Development Status Notice */}
-          <div className="mb-10 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 max-w-4xl mx-auto flex items-start gap-4">
-            <AlertTriangle className="h-6 w-6 text-amber-400 shrink-0 mt-0.5" />
-            <div className="text-sm">
-              <span className="font-bold text-amber-300">Modular Architecture Notice: </span>
-              <span className="text-slate-300">
-                The current software layer operates with a fully integrated simulated detection provider. Core modules for video management, camera nodes, restricted zones, evidence auditing, and incident tracking are 100% active. Pretrained models (YOLO, Grounding DINO, MediaPipe, ByteTrack) are under active development and designed for drop-in activation without altering application logic.
-              </span>
-            </div>
-          </div>
-
-          {/* Technology Badges Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-4 text-center">
-              <Code2 className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">Python</div>
-              <div className="text-[11px] text-[#94A3B8]">Core Backend Engine</div>
+          {/* 5 Impact Highlight Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="rounded-2xl border border-[#C8E6C9] bg-white/95 p-6 shadow-sm hover:shadow-md transition-all text-center space-y-3">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto">
+                <Sparkles className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold text-sm text-[#173B2A]">Cleaner Public Spaces</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Protects community parks, streets, and riverfronts from waste accumulation.
+              </p>
             </div>
 
-            <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-4 text-center">
-              <Video className="h-6 w-6 text-teal-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">OpenCV</div>
-              <div className="text-[11px] text-[#94A3B8]">Video & Frame Stream</div>
+            <div className="rounded-2xl border border-[#C8E6C9] bg-white/95 p-6 shadow-sm hover:shadow-md transition-all text-center space-y-3">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#4CAF50] flex items-center justify-center mx-auto">
+                <Recycle className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold text-sm text-[#173B2A]">Responsible Waste Disposal</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Encourages compliance with municipal segregation and designated trash zones.
+              </p>
             </div>
 
-            <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-4 text-center">
-              <Zap className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">FastAPI</div>
-              <div className="text-[11px] text-[#94A3B8]">High-Speed REST API</div>
+            <div className="rounded-2xl border border-[#C8E6C9] bg-white/95 p-6 shadow-sm hover:shadow-md transition-all text-center space-y-3">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto">
+                <Shield className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold text-sm text-[#173B2A]">Reduced Illegal Dumping</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Acts as a 24/7 deterrent against unauthorized commercial and residential dumping.
+              </p>
             </div>
 
-            <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-4 text-center">
-              <Database className="h-6 w-6 text-teal-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">SQLite & SQLAlchemy</div>
-              <div className="text-[11px] text-[#94A3B8]">Relational Auditing DB</div>
+            <div className="rounded-2xl border border-[#C8E6C9] bg-white/95 p-6 shadow-sm hover:shadow-md transition-all text-center space-y-3">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#4CAF50] flex items-center justify-center mx-auto">
+                <Eye className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold text-sm text-[#173B2A]">Smart Monitoring</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Transforms static cameras into intelligent, proactive environmental sentinels.
+              </p>
             </div>
 
-            <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-4 text-center">
-              <Boxes className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">React & Vite</div>
-              <div className="text-[11px] text-[#94A3B8]">Tailwind UI Dashboard</div>
-            </div>
-
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-center">
-              <Cpu className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">YOLO</div>
-              <div className="text-[11px] text-emerald-300">Object Detection (Modular)</div>
-            </div>
-
-            <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-4 text-center">
-              <Eye className="h-6 w-6 text-teal-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">Grounding DINO</div>
-              <div className="text-[11px] text-teal-300">Open-Vocabulary Waste</div>
-            </div>
-
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-center">
-              <Activity className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">MediaPipe</div>
-              <div className="text-[11px] text-emerald-300">Pose & Dumping Motion</div>
-            </div>
-
-            <div className="rounded-xl border border-teal-500/20 bg-teal-500/5 p-4 text-center">
-              <Compass className="h-6 w-6 text-teal-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">ByteTrack</div>
-              <div className="text-[11px] text-teal-300">Multi-Object Tracking</div>
-            </div>
-
-            <div className="rounded-xl border border-[#1E2D42] bg-[#111C2E] p-4 text-center">
-              <ShieldCheck className="h-6 w-6 text-emerald-400 mx-auto mb-2" />
-              <div className="font-bold text-white text-sm">Pydantic</div>
-              <div className="text-[11px] text-[#94A3B8]">Strict Data Validation</div>
+            <div className="rounded-2xl border border-[#C8E6C9] bg-white/95 p-6 shadow-sm hover:shadow-md transition-all text-center space-y-3 sm:col-span-2 lg:col-span-1">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto">
+                <HeartHandshake className="h-6 w-6" />
+              </div>
+              <h3 className="font-bold text-sm text-[#173B2A]">Sustainable Communities</h3>
+              <p className="text-xs text-[#647067] leading-relaxed">
+                Creates healthier urban neighborhoods free from biohazards and litter.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* CONTACT / CIVIC PORTAL SECTION */}
+      {/* 9. TECHNOLOGY SECTION */}
       {/* ========================================================================= */}
-      <section id="contact" className="py-20 bg-[#0B1220]/80 border-b border-[#1E2D42]/60">
+      <section id="technology" className="py-20 lg:py-28 bg-[#F8F9F0] border-b border-[#E8F5E9]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="rounded-3xl border border-[#1E2D42] bg-gradient-to-br from-[#111C2E] to-[#0B1220] p-8 lg:p-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 uppercase tracking-wider">
-                  Civic Collaboration & Inquiries
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                  Partnering for Cleaner Municipalities
-                </h3>
-                <p className="text-sm text-[#94A3B8] leading-relaxed">
-                  Are you an environmental officer, municipality planner, or surveillance coordinator looking to implement automated waste detection in your jurisdiction?
-                </p>
-                <div className="space-y-2 text-xs text-slate-300">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-emerald-400" />
-                    <span>surveillance-support@wastedetection.gov</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-emerald-400" />
-                    <span>Department of Environmental Protection & Civic Technology</span>
-                  </div>
-                </div>
+          <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#4CAF50]/30 bg-[#E8F5E9] px-4 py-1 text-xs font-bold text-[#1B5E20]">
+              <Cpu className="h-4 w-4 text-[#4CAF50]" />
+              <span>Technology Stack</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#173B2A]">
+              Powered by Intelligent Technology
+            </h2>
+            <p className="text-sm sm:text-base text-[#647067]">
+              Built with proven open-source technologies and engineered with a decoupled architecture for future AI neural model upgrades.
+            </p>
+          </div>
+
+          {/* 8 Technology Badges */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            {/* 1. Python */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto font-bold text-base">
+                Py
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">Python</h4>
+              <p className="text-[11px] text-[#647067]">Core Processing Engine</p>
+            </div>
+
+            {/* 2. OpenCV */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#4CAF50] flex items-center justify-center mx-auto">
+                <Camera className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">OpenCV</h4>
+              <p className="text-[11px] text-[#647067]">Video Frame Acquisition</p>
+            </div>
+
+            {/* 3. YOLO */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto">
+                <Eye className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">YOLO</h4>
+              <p className="text-[11px] text-[#647067]">Modular Object Detection</p>
+            </div>
+
+            {/* 4. FastAPI */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#4CAF50] flex items-center justify-center mx-auto">
+                <Zap className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">FastAPI</h4>
+              <p className="text-[11px] text-[#647067]">High-Speed Backend API</p>
+            </div>
+
+            {/* 5. React.js */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto">
+                <Code2 className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">React.js</h4>
+              <p className="text-[11px] text-[#647067]">Interactive Web Dashboard</p>
+            </div>
+
+            {/* 6. SQLite */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#4CAF50] flex items-center justify-center mx-auto">
+                <Database className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">SQLite</h4>
+              <p className="text-[11px] text-[#647067]">Relational Audit Database</p>
+            </div>
+
+            {/* 7. Computer Vision */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#1B5E20] flex items-center justify-center mx-auto">
+                <Activity className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">Computer Vision</h4>
+              <p className="text-[11px] text-[#647067]">Polygon Spatial Triaging</p>
+            </div>
+
+            {/* 8. Artificial Intelligence */}
+            <div className="rounded-2xl border border-[#E8F5E9] bg-white p-6 shadow-xs hover:shadow-md hover:border-[#4CAF50]/40 transition-all text-center space-y-2">
+              <div className="h-12 w-12 rounded-2xl bg-[#E8F5E9] text-[#4CAF50] flex items-center justify-center mx-auto">
+                <Cpu className="h-6 w-6" />
+              </div>
+              <h4 className="font-bold text-sm text-[#173B2A]">Artificial Intelligence</h4>
+              <p className="text-[11px] text-[#647067]">Human Pose & Action Analysis</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 10. CALL-TO-ACTION SECTION */}
+      {/* ========================================================================= */}
+      <section className="py-20 lg:py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1B5E20] via-[#2E7D32] to-[#4CAF50] p-10 sm:p-16 shadow-2xl text-white text-center">
+            {/* Background Decorative Rings */}
+            <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full border border-white/20 pointer-events-none" />
+            <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full border border-white/20 pointer-events-none" />
+
+            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md px-4 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                <Sparkles className="h-4 w-4" />
+                <span>Empowering Environmental Stewards</span>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-lg-end gap-4">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                Let's Build Cleaner Communities Together
+              </h2>
+
+              <p className="text-base sm:text-lg text-[#E8F5E9] leading-relaxed">
+                Experience intelligent waste monitoring with EcoWatch AI.
+              </p>
+
+              <div className="pt-2 flex flex-wrap justify-center gap-4">
                 <Link
-                  to="/login"
-                  className="w-full sm:w-auto text-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-500 transition-all"
+                  to={isAuthenticated ? "/dashboard" : "/login"}
+                  className="flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-sm font-extrabold text-[#1B5E20] shadow-lg shadow-black/10 hover:bg-[#F8F9F0] transition-all duration-200 hover:scale-105"
                 >
-                  Administrator Portal Login
+                  <Lock className="h-4 w-4 text-[#4CAF50]" />
+                  <span>Access Admin Dashboard</span>
+                  <ArrowRight className="h-4 w-4 text-[#1B5E20]" />
                 </Link>
-                <button
-                  onClick={() => alert('Demo contact request logged. For support inquiries, reach out to surveillance-support@wastedetection.gov.')}
-                  className="w-full sm:w-auto text-center rounded-xl border border-[#1E2D42] bg-[#111C2E] px-6 py-3.5 text-sm font-semibold text-slate-200 hover:text-white hover:bg-[#1A273D] transition-all"
-                >
-                  Request Platform Demo
-                </button>
               </div>
             </div>
           </div>
@@ -821,45 +868,82 @@ export default function LandingPage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* FOOTER */}
+      {/* CONTACT / INQUIRY SECTION */}
       {/* ========================================================================= */}
-      <footer className="bg-[#0B1220] py-12 text-[#94A3B8]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-8">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#1E2D42]">
+      <section id="contact" className="py-16 bg-[#F8F9F0] border-t border-[#E8F5E9]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center space-y-3">
+            <h3 className="text-2xl font-bold text-[#173B2A]">
+              Connect with the EcoWatch AI Team
+            </h3>
+            <p className="text-sm text-[#647067]">
+              Interested in deploying automated waste detection in your municipality or academic campus?
+            </p>
+            <div className="pt-2 text-xs font-medium text-[#1B5E20]">
+              support@ecowatch-ai.org • Environmental Systems & Civic Technology
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 11. FOOTER */}
+      {/* ========================================================================= */}
+      <footer className="bg-white border-t border-[#E8F5E9] py-14 text-[#647067]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#E8F5E9]">
+            {/* Logo & Tagline */}
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md">
-                <ShieldCheck className="h-5 w-5" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1B5E20] to-[#4CAF50] text-white shadow-md">
+                <Leaf className="h-6 w-6" />
               </div>
               <div>
-                <span className="text-base font-bold text-white block">
-                  Waste_Disposal_Detection
+                <span className="text-xl font-extrabold text-[#173B2A] block leading-tight">
+                  EcoWatch<span className="text-[#4CAF50]"> AI</span>
                 </span>
-                <span className="text-[10px] text-emerald-400 block -mt-0.5">
-                  AI Surveillance & Monitoring System
+                <span className="text-xs font-semibold text-[#1B5E20] block">
+                  Intelligent Monitoring. Cleaner Communities.
                 </span>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6 text-xs">
-              <button onClick={() => scrollToSection('hero')} className="hover:text-emerald-400">Home</button>
-              <button onClick={() => scrollToSection('about')} className="hover:text-emerald-400">About</button>
-              <button onClick={() => scrollToSection('features')} className="hover:text-emerald-400">Features</button>
-              <button onClick={() => scrollToSection('how-it-works')} className="hover:text-emerald-400">How It Works</button>
-              <button onClick={() => scrollToSection('technology')} className="hover:text-emerald-400">Technology</button>
-              <Link to="/login" className="hover:text-emerald-400 font-semibold text-white">Administrator Access</Link>
+            {/* Quick Navigation Links */}
+            <div className="flex flex-wrap items-center gap-6 text-xs font-semibold">
+              <button onClick={() => scrollToSection('hero')} className="hover:text-[#1B5E20] cursor-pointer">
+                Home
+              </button>
+              <button onClick={() => scrollToSection('about')} className="hover:text-[#1B5E20] cursor-pointer">
+                About
+              </button>
+              <button onClick={() => scrollToSection('features')} className="hover:text-[#1B5E20] cursor-pointer">
+                Features
+              </button>
+              <button onClick={() => scrollToSection('how-it-works')} className="hover:text-[#1B5E20] cursor-pointer">
+                How It Works
+              </button>
+              <button onClick={() => scrollToSection('impact')} className="hover:text-[#1B5E20] cursor-pointer">
+                Impact
+              </button>
+              <button onClick={() => scrollToSection('technology')} className="hover:text-[#1B5E20] cursor-pointer">
+                Technology
+              </button>
+              <Link to="/login" className="text-[#1B5E20] font-bold hover:underline">
+                Admin Login
+              </Link>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <div>
-              &copy; {new Date().getFullYear()} Waste_Disposal_Detection. Environmental Surveillance & Waste Monitoring Platform.
-            </div>
-            <div className="flex items-center gap-4">
+          {/* Project Description & Copyright */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#647067]">
+            <p>
+              &copy; {new Date().getFullYear()} EcoWatch AI – AI-Based Unauthorized Waste Disposal Detection and Monitoring System. All rights reserved.
+            </p>
+            <div className="flex items-center gap-3 text-[11px] font-medium text-[#1B5E20]">
               <span>FastAPI Backend</span>
               <span>•</span>
-              <span>OpenCV Video Pipeline</span>
+              <span>OpenCV Stream</span>
               <span>•</span>
-              <span>React 19 Frontend</span>
+              <span>React 19 & Tailwind</span>
             </div>
           </div>
         </div>
@@ -867,4 +951,3 @@ export default function LandingPage() {
     </div>
   );
 }
-

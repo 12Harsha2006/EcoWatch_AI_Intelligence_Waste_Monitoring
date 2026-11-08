@@ -39,15 +39,15 @@ export default function Sidebar() {
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#1E2D42] bg-[#111C2E] px-4 py-5 text-[#F8FAFC] shadow-xl">
       {/* Brand Logo & Application Name */}
       <div className="flex items-center gap-3 px-2 mb-6">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#1B5E20] to-[#4CAF50] text-white shadow-lg shadow-[#4CAF50]/20">
           <ShieldCheck className="h-6 w-6" />
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="text-sm font-bold tracking-tight text-white truncate" title="Waste_Disposal_Detection">
-            Waste_Disposal_Detection
+          <h1 className="text-sm font-extrabold tracking-tight text-white truncate" title="EcoWatch AI">
+            EcoWatch <span className="text-[#4CAF50]">AI</span>
           </h1>
           <p className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
-            Surveillance Console
+            Waste Surveillance
           </p>
         </div>
       </div>
