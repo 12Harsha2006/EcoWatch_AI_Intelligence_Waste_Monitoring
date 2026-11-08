@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
   Video,
@@ -9,43 +9,44 @@ import {
   BarChart3,
   FileSpreadsheet,
   Sliders,
-  Trash2,
   ShieldCheck,
+  Globe,
+  Radio,
 } from 'lucide-react';
 
 export default function Sidebar() {
   const navItems = [
-    { label: 'Overview', path: '/', icon: LayoutDashboard },
-    { label: 'Live Monitoring', path: '/monitoring', icon: Video },
-    { label: 'Incident Review', path: '/incidents', icon: AlertOctagon },
-    { label: 'Evidence Vault', path: '/evidence', icon: FolderLock },
-    { label: 'Camera Nodes', path: '/cameras', icon: Camera },
-    { label: 'Waste Analytics', path: '/analytics', icon: BarChart3 },
-    { label: 'Reports & Export', path: '/reports', icon: FileSpreadsheet },
-    { label: 'System Settings', path: '/settings', icon: Sliders },
+    { label: 'Overview', path: '/dashboard', icon: LayoutDashboard, exact: true },
+    { label: 'Live Monitoring', path: '/dashboard/monitoring', icon: Video },
+    { label: 'Incident Management', path: '/dashboard/incidents', icon: AlertOctagon },
+    { label: 'Evidence Management', path: '/dashboard/evidence', icon: FolderLock },
+    { label: 'Camera Management', path: '/dashboard/cameras', icon: Camera },
+    { label: 'Waste Analytics', path: '/dashboard/analytics', icon: BarChart3 },
+    { label: 'Reports', path: '/dashboard/reports', icon: FileSpreadsheet },
+    { label: 'Settings', path: '/dashboard/settings', icon: Sliders },
   ];
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-slate-200 bg-white px-4 py-5 shadow-sm">
-      {/* Brand Logo & Name */}
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#1E2D42] bg-[#111C2E] px-4 py-5 text-[#F8FAFC] shadow-xl">
+      {/* Brand Logo & Application Name */}
       <div className="flex items-center gap-3 px-2 mb-6">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-md shadow-emerald-500/20">
-          <Trash2 className="h-5 w-5" />
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20">
+          <ShieldCheck className="h-6 w-6" />
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="text-sm font-bold tracking-tight text-slate-900 truncate" title="Waste_Disposal_Detection">
+          <h1 className="text-sm font-bold tracking-tight text-white truncate" title="Waste_Disposal_Detection">
             Waste_Disposal_Detection
           </h1>
-          <p className="text-[10px] font-semibold tracking-wider text-emerald-600 uppercase">
-            AI Monitoring System
+          <p className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
+            Surveillance Console
           </p>
         </div>
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex-1 space-y-1 overflow-y-auto">
-        <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
-          Navigation Menu
+      <nav className="flex-1 space-y-1.5 overflow-y-auto pr-1">
+        <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#94A3B8]">
+          Monitoring Modules
         </div>
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -53,11 +54,12 @@ export default function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              end={item.exact}
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold transition-all duration-200 ${
                   isActive
-                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-emerald-500/20 to-teal-500/10 text-emerald-400 border border-emerald-500/30 shadow-sm'
+                    : 'text-[#94A3B8] hover:bg-[#1A273D] hover:text-white'
                 }`
               }
             >
@@ -68,18 +70,30 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* System Footer info */}
-      <div className="mt-auto border-t border-slate-100 pt-4 px-2">
-        <div className="rounded-xl border border-slate-200/80 bg-slate-50 p-3">
-          <div className="flex items-center justify-between text-[11px] text-slate-600">
-            <span>System State</span>
-            <span className="flex items-center gap-1 font-semibold text-emerald-600">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 radar-dot" /> Online
+      {/* Return to Public Portal Link */}
+      <div className="pt-3 pb-2">
+        <Link
+          to="/"
+          className="flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-medium text-[#94A3B8] hover:bg-[#1A273D] hover:text-white transition-colors"
+        >
+          <Globe className="h-4 w-4 text-teal-400" />
+          <span>Public Landing Page</span>
+        </Link>
+      </div>
+
+      {/* System Telemetry Footer */}
+      <div className="border-t border-[#1E2D42] pt-4 px-1">
+        <div className="rounded-xl border border-[#1E2D42] bg-[#0B1220] p-3 space-y-1.5">
+          <div className="flex items-center justify-between text-[11px] text-[#94A3B8]">
+            <span className="flex items-center gap-1.5">
+              <Radio className="h-3 w-3 text-emerald-400 animate-pulse" />
+              <span>Node Stream</span>
             </span>
+            <span className="font-semibold text-emerald-400">Online</span>
           </div>
-          <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400">
-            <span>Platform</span>
-            <span className="font-medium text-slate-600">v1.0.0 Enterprise</span>
+          <div className="flex items-center justify-between text-[10px] text-slate-500">
+            <span>Detection Mode</span>
+            <span className="font-mono text-teal-400">MOCK SIMULATED</span>
           </div>
         </div>
       </div>

@@ -33,34 +33,34 @@ export default function EvidenceManagement() {
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Surveillance Evidence Vault</h1>
-          <p className="text-xs text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-white">Surveillance Evidence Vault</h1>
+          <p className="text-xs text-[#94A3B8]">
             Isolated archive of captured snapshot frames, video clips, and metadata logs.
           </p>
         </div>
 
         {/* View mode toggle */}
-        <div className="flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-white p-1 shadow-sm">
+        <div className="flex items-center gap-2 rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-1 shadow-sm">
           <button
             onClick={() => setViewType('ALL')}
-            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-              viewType === 'ALL' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
+              viewType === 'ALL' ? 'bg-emerald-600 text-white shadow-sm' : 'text-[#94A3B8] hover:text-white'
             }`}
           >
             All Archives
           </button>
           <button
             onClick={() => setViewType('IMAGE')}
-            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-              viewType === 'IMAGE' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
+              viewType === 'IMAGE' ? 'bg-emerald-600 text-white shadow-sm' : 'text-[#94A3B8] hover:text-white'
             }`}
           >
             Photos Only
           </button>
           <button
             onClick={() => setViewType('VIDEO')}
-            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-              viewType === 'VIDEO' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
+              viewType === 'VIDEO' ? 'bg-emerald-600 text-white shadow-sm' : 'text-[#94A3B8] hover:text-white'
             }`}
           >
             Recordings Only
@@ -78,23 +78,23 @@ export default function EvidenceManagement() {
               <div
                 key={inc.id}
                 onClick={() => setSelectedIncident(inc)}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-md"
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-[#1E2D42] bg-[#111C2E] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-lg"
               >
                 {/* Image Snapshot Area */}
-                <div className="relative aspect-video w-full overflow-hidden bg-slate-900">
+                <div className="relative aspect-video w-full overflow-hidden bg-[#070D18]">
                   <img
                     src={imgUrl}
                     alt={`Evidence ${inc.id}`}
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = 'https://placehold.co/640x360/0f172a/94a3b8?text=Evidence+Snapshot';
+                      e.target.src = 'https://placehold.co/640x360/070d18/94a3b8?text=Evidence+Snapshot';
                     }}
                   />
                   <div className="absolute top-3 left-3">
                     <StatusBadge status={inc.status} />
                   </div>
-                  <div className="absolute top-3 right-3 rounded-md bg-black/70 px-2 py-0.5 text-[10px] font-mono text-emerald-400 backdrop-blur-md">
+                  <div className="absolute top-3 right-3 rounded-md bg-black/80 px-2 py-0.5 text-[10px] font-mono text-emerald-400 backdrop-blur-md border border-white/10">
                     {(inc.confidence * 100).toFixed(0)}% Match
                   </div>
                 </div>
@@ -102,22 +102,22 @@ export default function EvidenceManagement() {
                 {/* Metadata details */}
                 <div className="p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-mono text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition">
+                    <h3 className="font-mono text-sm font-bold text-white group-hover:text-emerald-400 transition">
                       {inc.id}
                     </h3>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
                       {inc.waste_category?.replace('_', ' ')}
                     </span>
                   </div>
 
-                  <div className="space-y-1.5 text-xs text-slate-500">
+                  <div className="space-y-1.5 text-xs text-[#94A3B8]">
                     <div className="flex items-center gap-1.5 truncate">
                       <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                      <span className="truncate font-medium text-slate-700">{inc.location}</span>
+                      <span className="truncate font-medium text-slate-300">{inc.location}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Camera className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                      <span className="font-mono text-slate-600">{inc.camera_id}</span>
+                      <span className="font-mono text-slate-400">{inc.camera_id}</span>
                     </div>
                     <div className="flex items-center gap-1.5 font-mono text-[11px]">
                       <Calendar className="h-3.5 w-3.5 text-slate-400 shrink-0" />
@@ -125,11 +125,11 @@ export default function EvidenceManagement() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-slate-100 pt-3">
-                    <span className="text-[11px] text-slate-400 font-mono">
+                  <div className="flex items-center justify-between border-t border-[#1E2D42] pt-3">
+                    <span className="text-[11px] text-slate-500 font-mono">
                       Dir: {inc.evidence_folder?.split('\\').pop() || inc.id}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 group-hover:underline">
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 group-hover:underline">
                       <ExternalLink className="h-3.5 w-3.5" />
                       <span>Open Vault</span>
                     </span>

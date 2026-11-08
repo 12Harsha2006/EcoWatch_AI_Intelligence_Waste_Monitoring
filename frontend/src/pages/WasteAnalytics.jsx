@@ -16,7 +16,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import MetricCard from '../components/MetricCard';
 import { incidentService } from '../services/incidentService';
 
-const COLORS = ['#059669', '#f59e0b', '#2563eb', '#e11d48', '#9333ea', '#0891b2'];
+const COLORS = ['#10b981', '#14b8a6', '#0ea5e9', '#f59e0b', '#ec4899', '#8b5cf6'];
 
 export default function WasteAnalytics() {
   const [incidents, setIncidents] = useState([]);
@@ -87,20 +87,20 @@ export default function WasteAnalytics() {
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Waste Accumulation Analytics</h1>
-          <p className="text-xs text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-white">Waste Accumulation Analytics</h1>
+          <p className="text-xs text-[#94A3B8]">
             Temporal patterns, disposal hotspots, and waste material classification statistics.
           </p>
         </div>
 
         {/* Time Filter */}
-        <div className="flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-white p-1 shadow-sm">
+        <div className="flex items-center gap-2 rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-1 shadow-sm">
           {['ALL', 'MONTHLY', 'WEEKLY', 'DAILY'].map((range) => (
             <button
               key={range}
               onClick={() => setTimeRange(range)}
-              className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition ${
-                timeRange === range ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
+                timeRange === range ? 'bg-emerald-600 text-white shadow-sm' : 'text-[#94A3B8] hover:text-white'
               }`}
             >
               {range}
@@ -142,27 +142,27 @@ export default function WasteAnalytics() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Accumulation Timeline */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-slate-800">Disposal Incidents Timeline</h3>
+            <h3 className="text-sm font-bold text-white">Disposal Incidents Timeline</h3>
             <span className="text-[11px] font-medium text-slate-400">Trend by timeline</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                <XAxis dataKey="date" stroke="#94a3b8" fontSize={11} />
-                <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1E2D42" vertical={false} />
+                <XAxis dataKey="date" stroke="#94A3B8" fontSize={11} />
+                <YAxis stroke="#94A3B8" fontSize={11} allowDecimals={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
-                  itemStyle={{ color: '#059669', fontWeight: 600 }}
+                  contentStyle={{ backgroundColor: '#0B1220', borderColor: '#1E2D42', borderRadius: '12px', color: '#F8FAFC' }}
+                  itemStyle={{ color: '#10B981', fontWeight: 600 }}
                 />
                 <Line
                   type="monotone"
                   dataKey="incidents"
-                  stroke="#059669"
+                  stroke="#10B981"
                   strokeWidth={2.5}
-                  dot={{ fill: '#059669', r: 4 }}
+                  dot={{ fill: '#10B981', r: 4 }}
                   activeDot={{ r: 6 }}
                 />
               </LineChart>
@@ -171,21 +171,21 @@ export default function WasteAnalytics() {
         </div>
 
         {/* Waste Category Breakdown */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-slate-800">Material Category Distribution</h3>
+            <h3 className="text-sm font-bold text-white">Material Category Distribution</h3>
             <span className="text-[11px] font-medium text-slate-400">Classified debris types</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={categoryChartData} layout="vertical" margin={{ left: 20, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
-                <XAxis type="number" stroke="#94a3b8" fontSize={11} allowDecimals={false} />
-                <YAxis dataKey="name" type="category" stroke="#94a3b8" fontSize={10} width={110} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1E2D42" horizontal={false} />
+                <XAxis type="number" stroke="#94A3B8" fontSize={11} allowDecimals={false} />
+                <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={10} width={110} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
+                  contentStyle={{ backgroundColor: '#0B1220', borderColor: '#1E2D42', borderRadius: '12px', color: '#F8FAFC' }}
                 />
-                <Bar dataKey="count" fill="#2563eb" radius={[0, 6, 6, 0]}>
+                <Bar dataKey="count" fill="#14B8A6" radius={[0, 6, 6, 0]}>
                   {categoryChartData.map((_, index) => (
                     <Cell key={`cat-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
@@ -196,22 +196,22 @@ export default function WasteAnalytics() {
         </div>
 
         {/* Location Hotspots Bar Chart */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm lg:col-span-2">
+        <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-slate-800">Location Hotspot Analysis</h3>
+            <h3 className="text-sm font-bold text-white">Location Hotspot Analysis</h3>
             <span className="text-[11px] font-medium text-slate-400">Perimeter vulnerability rankings</span>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={locationChartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
-                <XAxis dataKey="location" stroke="#94a3b8" fontSize={11} />
-                <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1E2D42" vertical={false} />
+                <XAxis dataKey="location" stroke="#94A3B8" fontSize={11} />
+                <YAxis stroke="#94A3B8" fontSize={11} allowDecimals={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
-                  itemStyle={{ color: '#d97706', fontWeight: 600 }}
+                  contentStyle={{ backgroundColor: '#0B1220', borderColor: '#1E2D42', borderRadius: '12px', color: '#F8FAFC' }}
+                  itemStyle={{ color: '#10B981', fontWeight: 600 }}
                 />
-                <Bar dataKey="incidents" fill="#d97706" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="incidents" fill="#10B981" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

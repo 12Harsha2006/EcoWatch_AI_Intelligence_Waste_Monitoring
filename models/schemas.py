@@ -156,3 +156,21 @@ class IncidentReportFilter(BaseModel):
     waste_category: Optional[str] = "ALL"
     start_date: Optional[datetime] = None
     end_date: Optional[datetime] = None
+
+
+# =====================================================================
+# AUTHENTICATION SCHEMAS
+# =====================================================================
+class LoginRequest(BaseModel):
+    email: str = Field(..., description="Administrator email address")
+    password: str = Field(..., description="Administrator password")
+
+class UserProfile(BaseModel):
+    email: str
+    name: str
+    role: str
+
+class LoginResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserProfile

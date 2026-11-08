@@ -35,3 +35,26 @@ def test_export_csv():
     assert "text/csv" in response.headers.get("content-type", "")
     assert "Incident ID" in response.text
 
+def test_auth_login_success():
+    response = client.post("/api/auth/login", json={
+        "email": "admin@wastedetection.gov",
+        "password": "admin123"
+    })
+    assert response.status_code == 200
+    data = response.json()
+    assert "access_token" in data
+    assert data["user"]["email"] == "admin@wastedetection.gov"
+
+    # Test me endpoint
+    token = data["access_token"]
+    me_resp = client.get("/api/auth/me", headers={"Authorization": f"Bearer {token}"})
+    assert me_resp.status_code == 200
+    assert me_resp.json()["role"] == "System Administrator"
+
+def test_auth_login_invalid():
+    response = client.post("/api/auth/login", json={
+        "email": "admin@wastedetection.gov",
+        "password": "wrongpassword"
+    })
+    assert response.status_code == 401
+

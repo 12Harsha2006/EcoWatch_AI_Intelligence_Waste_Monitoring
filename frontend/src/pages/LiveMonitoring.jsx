@@ -137,10 +137,10 @@ export default function LiveMonitoring() {
       {/* Header & Controls */}
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-bold tracking-tight text-white">
             Live Surveillance & Detection
           </h1>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[#94A3B8]">
             Real-time optical monitoring, spatial zone evaluation, and automated incident capture.
           </p>
         </div>
@@ -149,9 +149,9 @@ export default function LiveMonitoring() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setUploadOpen(!uploadOpen)}
-            className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:text-slate-900"
+            className="flex items-center gap-2 rounded-xl border border-[#1E2D42] bg-[#111C2E] px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#1A273D] hover:border-emerald-500/40 cursor-pointer"
           >
-            <Upload className="h-4 w-4 text-emerald-600" />
+            <Upload className="h-4 w-4 text-emerald-400" />
             <span>Upload Video Source</span>
           </button>
         </div>
@@ -161,16 +161,16 @@ export default function LiveMonitoring() {
       {uploadOpen && (
         <form
           onSubmit={handleUploadSubmit}
-          className="rounded-2xl border border-emerald-200 bg-white p-5 shadow-md animate-in fade-in"
+          className="rounded-2xl border border-emerald-500/30 bg-[#111C2E] p-5 shadow-lg animate-in fade-in"
         >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-bold text-emerald-800">
+            <h3 className="text-sm font-bold text-white">
               Upload Video Footage for Surveillance Analysis
             </h3>
             <button
               type="button"
               onClick={() => setUploadOpen(false)}
-              className="text-xs font-semibold text-slate-400 hover:text-slate-700"
+              className="text-xs font-semibold text-slate-400 hover:text-white cursor-pointer"
             >
               Cancel
             </button>
@@ -178,42 +178,42 @@ export default function LiveMonitoring() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="text-xs font-medium text-slate-600">Camera Node ID (Optional)</label>
+              <label className="text-xs font-medium text-slate-300">Camera Node ID (Optional)</label>
               <input
                 type="text"
                 placeholder="CAM_UP_01"
                 value={uploadCamId}
                 onChange={(e) => setUploadCamId(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-slate-600">Camera Name</label>
+              <label className="text-xs font-medium text-slate-300">Camera Name</label>
               <input
                 type="text"
                 value={uploadCamName}
                 onChange={(e) => setUploadCamName(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
                 required
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-slate-600">Location</label>
+              <label className="text-xs font-medium text-slate-300">Location</label>
               <input
                 type="text"
                 value={uploadLocation}
                 onChange={(e) => setUploadLocation(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
                 required
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-slate-600">Video File (.mp4, .avi)</label>
+              <label className="text-xs font-medium text-slate-300">Video File (.mp4, .avi)</label>
               <input
                 type="file"
                 accept="video/*"
                 onChange={(e) => setUploadFile(e.target.files[0])}
-                className="mt-1 w-full text-xs text-slate-600 file:mr-2 file:rounded-md file:border-0 file:bg-emerald-600 file:px-2.5 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-emerald-700 cursor-pointer"
+                className="mt-1 w-full text-xs text-slate-300 file:mr-2 file:rounded-md file:border-0 file:bg-emerald-600 file:px-2.5 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-emerald-500 cursor-pointer"
                 required
               />
             </div>
@@ -223,7 +223,7 @@ export default function LiveMonitoring() {
             <button
               type="submit"
               disabled={isUploading}
-              className="flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500 disabled:opacity-50 cursor-pointer"
             >
               <Upload className="h-4 w-4" />
               <span>{isUploading ? 'Uploading & Registering...' : 'Upload & Start Stream'}</span>
@@ -237,7 +237,7 @@ export default function LiveMonitoring() {
         
         {/* Left Video Stream Area (3 cols) */}
         <div className="lg:col-span-3 space-y-4">
-          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 aspect-video flex items-center justify-center shadow-lg">
+          <div className="relative overflow-hidden rounded-2xl border border-[#1E2D42] bg-[#070D18] aspect-video flex items-center justify-center shadow-2xl">
             {isRunning ? (
               <img
                 src={streamUrl}
@@ -251,7 +251,7 @@ export default function LiveMonitoring() {
               <div className="flex flex-col items-center justify-center p-8 text-center text-slate-400">
                 <Camera className="h-14 w-14 stroke-1 text-slate-600 mb-3" />
                 <p className="text-sm font-semibold text-slate-200">Surveillance Stream Inactive</p>
-                <p className="text-xs text-slate-400 mt-1 max-w-sm">
+                <p className="text-xs text-[#94A3B8] mt-1 max-w-sm">
                   Click 'Start Monitoring' below to activate the video feed and detection engine.
                 </p>
               </div>
@@ -259,37 +259,37 @@ export default function LiveMonitoring() {
 
             {/* Top-left Overlay Badges */}
             <div className="absolute top-4 left-4 flex items-center gap-2">
-              <span className="flex items-center gap-1.5 rounded-md bg-black/70 px-2.5 py-1 text-[11px] font-mono text-white backdrop-blur-md border border-white/10">
+              <span className="flex items-center gap-1.5 rounded-md bg-black/80 px-2.5 py-1 text-[11px] font-mono text-white backdrop-blur-md border border-white/10">
                 <span className={`h-2 w-2 rounded-full ${isRunning ? 'bg-emerald-400 animate-ping' : 'bg-slate-500'}`} />
                 {isRunning ? 'LIVE CCTV' : 'OFFLINE'}
               </span>
-              <span className="rounded-md bg-black/70 px-2 py-1 text-[11px] font-mono text-emerald-400 backdrop-blur-md border border-white/10">
+              <span className="rounded-md bg-black/80 px-2 py-1 text-[11px] font-mono text-emerald-400 backdrop-blur-md border border-white/10">
                 {selectedCamId}
               </span>
             </div>
 
             {/* Top-right Overlay FPS */}
             <div className="absolute top-4 right-4 flex items-center gap-2">
-              <span className="rounded-md bg-black/70 px-2.5 py-1 text-[11px] font-mono text-slate-300 backdrop-blur-md border border-white/10">
+              <span className="rounded-md bg-black/80 px-2.5 py-1 text-[11px] font-mono text-slate-300 backdrop-blur-md border border-white/10">
                 FPS: <strong className="text-emerald-400">{fps}</strong>
               </span>
             </div>
           </div>
 
           {/* Stream Control Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-4 shadow-sm">
             <div className="flex items-center gap-3">
               {isRunning ? (
                 <button
                   onClick={handleStop}
-                  className="flex items-center gap-2 rounded-xl bg-rose-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-rose-700"
+                  className="flex items-center gap-2 rounded-xl bg-rose-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-rose-500 cursor-pointer"
                 >
                   <Square className="h-4 w-4" /> Stop Monitoring
                 </button>
               ) : (
                 <button
                   onClick={handleStart}
-                  className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+                  className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500 cursor-pointer"
                 >
                   <Play className="h-4 w-4" /> Start Monitoring
                 </button>
@@ -298,16 +298,16 @@ export default function LiveMonitoring() {
               <button
                 onClick={handleTriggerSimulatedDrop}
                 disabled={!isRunning}
-                className="flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 text-xs font-semibold text-amber-800 transition hover:bg-amber-100 disabled:opacity-40"
+                className="flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3.5 py-2 text-xs font-semibold text-amber-300 transition hover:bg-amber-500/20 disabled:opacity-40 cursor-pointer"
               >
-                <Sparkles className="h-4 w-4 text-amber-600" />
+                <Sparkles className="h-4 w-4 text-amber-400" />
                 <span>Simulate Waste Drop Alert</span>
               </button>
             </div>
 
-            <div className="text-xs text-slate-500 font-medium">
+            <div className="text-xs text-[#94A3B8] font-medium">
               Provider Mode:{' '}
-              <span className="font-mono font-semibold text-slate-800">Automated Pipeline</span>
+              <span className="font-mono font-semibold text-emerald-400">Automated Pipeline</span>
             </div>
           </div>
 
@@ -316,8 +316,8 @@ export default function LiveMonitoring() {
             <div
               className={`rounded-xl border p-3 text-xs font-medium ${
                 simAlertMsg.type === 'success'
-                  ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                  : 'border-rose-200 bg-rose-50 text-rose-800'
+                  ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+                  : 'border-rose-500/30 bg-rose-500/10 text-rose-300'
               }`}
             >
               {simAlertMsg.text}
@@ -327,8 +327,8 @@ export default function LiveMonitoring() {
 
         {/* Right Camera Feed Selector & Details (1 col) */}
         <div className="space-y-4">
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+          <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-4 shadow-sm">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
               Select Camera Node
             </h3>
             <div className="space-y-2">
@@ -341,48 +341,48 @@ export default function LiveMonitoring() {
                       setSelectedCamId(cam.id);
                     }
                   }}
-                  className={`w-full text-left rounded-xl p-3 border text-xs transition ${
+                  className={`w-full text-left rounded-xl p-3 border text-xs transition cursor-pointer ${
                     cam.id === selectedCamId
-                      ? 'border-emerald-300 bg-emerald-50/70 text-slate-900 shadow-sm'
-                      : 'border-slate-200/80 bg-slate-50/50 text-slate-600 hover:bg-slate-100'
+                      ? 'border-emerald-500/50 bg-emerald-500/10 text-white shadow-sm'
+                      : 'border-[#1E2D42] bg-[#0B1220] text-slate-300 hover:bg-[#1A273D]'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono font-bold text-emerald-700">{cam.id}</span>
-                    <span className={`h-2 w-2 rounded-full ${cam.is_enabled ? 'bg-emerald-500' : 'bg-slate-300'}`} />
+                    <span className="font-mono font-bold text-emerald-400">{cam.id}</span>
+                    <span className={`h-2 w-2 rounded-full ${cam.is_enabled ? 'bg-emerald-400' : 'bg-slate-500'}`} />
                   </div>
-                  <p className="font-semibold text-slate-800 mt-1 truncate">{cam.name}</p>
-                  <p className="text-[11px] text-slate-500 truncate">{cam.location}</p>
+                  <p className="font-semibold text-white mt-1 truncate">{cam.name}</p>
+                  <p className="text-[11px] text-[#94A3B8] truncate">{cam.location}</p>
                 </button>
               ))}
 
               {cameras.length === 0 && (
-                <p className="text-xs text-slate-400">No cameras registered.</p>
+                <p className="text-xs text-slate-500">No cameras registered.</p>
               )}
             </div>
           </div>
 
           {/* Node Diagnostics */}
           {selectedCam && (
-            <div className="rounded-2xl border border-slate-200/80 bg-white p-4 text-xs shadow-sm space-y-2.5">
-              <h4 className="font-bold uppercase tracking-wider text-slate-500">Node Configuration</h4>
-              <div className="flex justify-between border-b border-slate-100 pb-2">
-                <span className="text-slate-500">Source Type:</span>
-                <span className="font-mono text-slate-800 uppercase font-semibold">{selectedCam.source_type}</span>
+            <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-4 text-xs shadow-sm space-y-2.5">
+              <h4 className="font-bold uppercase tracking-wider text-slate-400">Node Configuration</h4>
+              <div className="flex justify-between border-b border-[#1E2D42] pb-2">
+                <span className="text-[#94A3B8]">Source Type:</span>
+                <span className="font-mono text-white uppercase font-semibold">{selectedCam.source_type}</span>
               </div>
-              <div className="flex justify-between border-b border-slate-100 pb-2">
-                <span className="text-slate-500">Stream Path:</span>
-                <span className="font-mono text-slate-700 truncate max-w-[150px]" title={selectedCam.source_path}>
+              <div className="flex justify-between border-b border-[#1E2D42] pb-2">
+                <span className="text-[#94A3B8]">Stream Path:</span>
+                <span className="font-mono text-slate-300 truncate max-w-[150px]" title={selectedCam.source_path}>
                   {selectedCam.source_path}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-100 pb-2">
-                <span className="text-slate-500">Evaluation:</span>
-                <span className="text-emerald-700 font-semibold">Restricted Polygon</span>
+              <div className="flex justify-between border-b border-[#1E2D42] pb-2">
+                <span className="text-[#94A3B8]">Evaluation:</span>
+                <span className="text-emerald-400 font-semibold">Restricted Polygon</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">Status:</span>
-                <span className="text-slate-800 font-semibold">{selectedCam.status}</span>
+                <span className="text-[#94A3B8]">Status:</span>
+                <span className="text-white font-semibold">{selectedCam.status}</span>
               </div>
             </div>
           )}

@@ -81,15 +81,15 @@ export default function IncidentManagement() {
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Incident Review & Audit</h1>
-          <p className="text-xs text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-white">Incident Review & Audit</h1>
+          <p className="text-xs text-[#94A3B8]">
             Verify automated dumping alerts, reject false alarms, review evidence images, and manage resolution states.
           </p>
         </div>
       </div>
 
       {/* Filters Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-4 shadow-sm">
         {/* Search */}
         <div className="relative">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -98,7 +98,7 @@ export default function IncidentManagement() {
             placeholder="Search incident ID, location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-emerald-600 focus:outline-none"
+            className="w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
           />
         </div>
 
@@ -107,7 +107,7 @@ export default function IncidentManagement() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
+            className="w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
           >
             <option value="ALL">All Statuses</option>
             <option value="PENDING">Pending Review</option>
@@ -122,7 +122,7 @@ export default function IncidentManagement() {
           <select
             value={cameraFilter}
             onChange={(e) => setCameraFilter(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
+            className="w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
           >
             <option value="ALL">All Camera Nodes</option>
             {cameras.map((c) => (
@@ -138,7 +138,7 @@ export default function IncidentManagement() {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
+            className="w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
           >
             <option value="ALL">All Waste Categories</option>
             <option value="plastic_waste">Plastic Waste</option>
@@ -151,10 +151,10 @@ export default function IncidentManagement() {
       </div>
 
       {/* Incidents Table */}
-      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+      <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-semibold text-slate-500">
-            Showing <strong className="text-slate-900">{filteredIncidents.length}</strong> recorded incidents
+          <span className="text-xs font-semibold text-[#94A3B8]">
+            Showing <strong className="text-white">{filteredIncidents.length}</strong> recorded incidents
           </span>
         </div>
 
@@ -164,7 +164,7 @@ export default function IncidentManagement() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
+                <tr className="border-b border-[#1E2D42] text-slate-400 bg-[#0B1220]/70">
                   <th className="py-2.5 px-3 font-semibold rounded-l-lg">Incident ID</th>
                   <th className="py-2.5 px-3 font-semibold">Date & Time (UTC)</th>
                   <th className="py-2.5 px-3 font-semibold">Location</th>
@@ -175,27 +175,27 @@ export default function IncidentManagement() {
                   <th className="py-2.5 px-3 font-semibold text-right rounded-r-lg">Evidence</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-[#1E2D42]">
                 {filteredIncidents.map((inc) => (
                   <tr
                     key={inc.id}
                     onClick={() => setSelectedIncident(inc)}
-                    className="cursor-pointer transition hover:bg-slate-50/80"
+                    className="cursor-pointer transition hover:bg-[#1A273D]/60"
                   >
-                    <td className="py-3 px-3 font-mono font-bold text-emerald-700">{inc.id}</td>
-                    <td className="py-3 px-3 font-mono text-slate-600">
+                    <td className="py-3 px-3 font-mono font-bold text-emerald-400">{inc.id}</td>
+                    <td className="py-3 px-3 font-mono text-[#94A3B8]">
                       {inc.timestamp?.replace('T', ' ').slice(0, 19)}
                     </td>
-                    <td className="py-3 px-3 text-slate-700">
-                      <div className="font-medium text-slate-800">{inc.location}</div>
-                      <span className="text-[10px] text-slate-400 font-mono">{inc.camera_id}</span>
+                    <td className="py-3 px-3 text-slate-300">
+                      <div className="font-medium text-white">{inc.location}</div>
+                      <span className="text-[10px] text-slate-500 font-mono">{inc.camera_id}</span>
                     </td>
                     <td className="py-3 px-3">
-                      <span className="rounded-md bg-amber-50 border border-amber-200 px-2 py-0.5 text-amber-800 font-semibold uppercase tracking-wide">
+                      <span className="rounded-md bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 text-amber-300 font-semibold uppercase tracking-wide">
                         {inc.waste_category?.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-slate-700 font-mono font-medium">
+                    <td className="py-3 px-3 text-slate-300 font-mono font-medium">
                       {(inc.confidence * 100).toFixed(0)}%
                     </td>
                     <td className="py-3 px-3">
@@ -207,14 +207,14 @@ export default function IncidentManagement() {
                           <button
                             title="Verify incident"
                             onClick={(e) => handleQuickAction(e, inc.id, 'VERIFIED')}
-                            className="rounded p-1 text-slate-400 hover:bg-emerald-50 hover:text-emerald-700 transition"
+                            className="rounded p-1 text-slate-400 hover:bg-emerald-500/20 hover:text-emerald-400 transition cursor-pointer"
                           >
                             <CheckCircle className="h-4 w-4" />
                           </button>
                           <button
                             title="Reject false alert"
                             onClick={(e) => handleQuickAction(e, inc.id, 'REJECTED')}
-                            className="rounded p-1 text-slate-400 hover:bg-rose-50 hover:text-rose-700 transition"
+                            className="rounded p-1 text-slate-400 hover:bg-rose-500/20 hover:text-rose-400 transition cursor-pointer"
                           >
                             <XCircle className="h-4 w-4" />
                           </button>
@@ -223,18 +223,18 @@ export default function IncidentManagement() {
                         <button
                           title="Mark resolved"
                           onClick={(e) => handleQuickAction(e, inc.id, 'RESOLVED')}
-                          className="inline-flex items-center gap-1 rounded bg-sky-50 border border-sky-200 px-2 py-0.5 text-[11px] font-semibold text-sky-700 hover:bg-sky-100"
+                          className="inline-flex items-center gap-1 rounded bg-teal-500/10 border border-teal-500/30 px-2 py-0.5 text-[11px] font-semibold text-teal-300 hover:bg-teal-500/20 cursor-pointer"
                         >
                           <RefreshCw className="h-3 w-3" /> Resolve
                         </button>
                       ) : (
-                        <span className="text-slate-400">—</span>
+                        <span className="text-slate-500">—</span>
                       )}
                     </td>
                     <td className="py-3 px-3 text-right">
                       <button
                         onClick={() => setSelectedIncident(inc)}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 font-semibold text-slate-700 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#1E2D42] bg-[#0B1220] px-2.5 py-1 font-semibold text-slate-300 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600 cursor-pointer"
                       >
                         <Eye className="h-3.5 w-3.5" />
                         <span>Inspect</span>

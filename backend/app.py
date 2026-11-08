@@ -14,6 +14,7 @@ from backend.api.routes_zones import router as zones_router
 from backend.api.routes_incidents import router as incidents_router
 from backend.api.routes_evidence import router as evidence_router
 from backend.api.routes_monitoring import router as monitoring_router
+from backend.api.routes_auth import router as auth_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -59,6 +60,7 @@ app.include_router(zones_router, prefix="/api")
 app.include_router(incidents_router, prefix="/api")
 app.include_router(evidence_router, prefix="/api")
 app.include_router(monitoring_router, prefix="/api")
+app.include_router(auth_router, prefix="/api")
 
 @app.get("/", tags=["System"])
 def root():

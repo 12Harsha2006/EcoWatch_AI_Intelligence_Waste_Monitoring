@@ -70,8 +70,8 @@ export default function Reports() {
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Compliance & Audit Reports</h1>
-          <p className="text-xs text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-white">Compliance & Audit Reports</h1>
+          <p className="text-xs text-[#94A3B8]">
             Generate formal incident summaries, filter by operational sector, and export CSV compliance audits.
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function Reports() {
         <button
           onClick={handleExportCsv}
           disabled={exporting || incidents.length === 0}
-          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:opacity-50"
+          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500 disabled:opacity-50 cursor-pointer"
         >
           <Download className="h-4 w-4" />
           <span>{exporting ? 'Generating CSV...' : 'Export Report (CSV)'}</span>
@@ -87,13 +87,13 @@ export default function Reports() {
       </div>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-4 shadow-sm">
         <div>
-          <label className="text-[11px] font-semibold text-slate-600">Verification Status</label>
+          <label className="text-[11px] font-semibold text-slate-300">Verification Status</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
+            className="mt-1 w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
           >
             <option value="ALL">All Statuses</option>
             <option value="PENDING">Pending</option>
@@ -104,11 +104,11 @@ export default function Reports() {
         </div>
 
         <div>
-          <label className="text-[11px] font-semibold text-slate-600">Camera Surveillance Node</label>
+          <label className="text-[11px] font-semibold text-slate-300">Camera Surveillance Node</label>
           <select
             value={cameraFilter}
             onChange={(e) => setCameraFilter(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
+            className="mt-1 w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
           >
             <option value="ALL">All Camera Nodes</option>
             {cameras.map((c) => (
@@ -120,11 +120,11 @@ export default function Reports() {
         </div>
 
         <div>
-          <label className="text-[11px] font-semibold text-slate-600">Waste Material Category</label>
+          <label className="text-[11px] font-semibold text-slate-300">Waste Material Category</label>
           <select
             value={wasteFilter}
             onChange={(e) => setWasteFilter(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-900 focus:bg-white focus:border-emerald-600 focus:outline-none font-medium"
+            className="mt-1 w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
           >
             <option value="ALL">All Material Types</option>
             <option value="plastic_waste">Plastic Waste</option>
@@ -137,10 +137,10 @@ export default function Reports() {
       </div>
 
       {/* Report Data Table */}
-      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+      <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-semibold text-slate-500">
-            Audit Ledger: <strong className="text-slate-900">{incidents.length}</strong> matching records
+          <span className="text-xs font-semibold text-[#94A3B8]">
+            Audit Ledger: <strong className="text-white">{incidents.length}</strong> matching records
           </span>
         </div>
 
@@ -150,7 +150,7 @@ export default function Reports() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
+                <tr className="border-b border-[#1E2D42] text-slate-400 bg-[#0B1220]/70">
                   <th className="py-2.5 px-3 font-semibold rounded-l-lg">Incident ID</th>
                   <th className="py-2.5 px-3 font-semibold">Timestamp (UTC)</th>
                   <th className="py-2.5 px-3 font-semibold">Camera Node</th>
@@ -161,25 +161,25 @@ export default function Reports() {
                   <th className="py-2.5 px-3 font-semibold text-right rounded-r-lg">Remarks / Action Log</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-[#1E2D42]">
                 {incidents.map((inc) => (
-                  <tr key={inc.id} className="transition hover:bg-slate-50/80">
-                    <td className="py-3 px-3 font-mono font-bold text-emerald-700">{inc.id}</td>
-                    <td className="py-3 px-3 font-mono text-slate-600">
+                  <tr key={inc.id} className="transition hover:bg-[#1A273D]/60">
+                    <td className="py-3 px-3 font-mono font-bold text-emerald-400">{inc.id}</td>
+                    <td className="py-3 px-3 font-mono text-[#94A3B8]">
                       {inc.timestamp?.replace('T', ' ').slice(0, 19)}
                     </td>
-                    <td className="py-3 px-3 font-mono text-slate-700 font-medium">{inc.camera_id}</td>
-                    <td className="py-3 px-3 text-slate-700">{inc.location}</td>
-                    <td className="py-3 px-3 capitalize font-semibold text-amber-700">
+                    <td className="py-3 px-3 font-mono text-slate-300 font-medium">{inc.camera_id}</td>
+                    <td className="py-3 px-3 text-slate-300">{inc.location}</td>
+                    <td className="py-3 px-3 capitalize font-semibold text-amber-400">
                       {inc.waste_category?.replace('_', ' ')}
                     </td>
-                    <td className="py-3 px-3 font-mono text-slate-700">
+                    <td className="py-3 px-3 font-mono text-slate-300">
                       {(inc.confidence * 100).toFixed(0)}%
                     </td>
                     <td className="py-3 px-3">
                       <StatusBadge status={inc.status} />
                     </td>
-                    <td className="py-3 px-3 text-slate-500 italic max-w-xs truncate text-right">
+                    <td className="py-3 px-3 text-slate-400 italic max-w-xs truncate text-right">
                       {inc.remarks || 'No remarks recorded.'}
                     </td>
                   </tr>
