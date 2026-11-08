@@ -1,0 +1,32 @@
+# Python Bytecode and Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment Variables
+.env
+
+# SQLite Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Evidence Media Files (Keep .gitkeep in evidence)
+evidence/*
+!evidence/.gitkeep
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+logs/
