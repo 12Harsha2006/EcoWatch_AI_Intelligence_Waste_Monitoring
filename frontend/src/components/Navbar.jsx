@@ -106,7 +106,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     await logout();
-    navigate('/');
+    navigate('/', { replace: true });
   };
 
   const unreadCount = notifications.filter(n => n.unread).length;

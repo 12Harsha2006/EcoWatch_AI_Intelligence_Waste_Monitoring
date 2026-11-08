@@ -488,7 +488,7 @@ export default function Settings() {
                 type="button"
                 onClick={async () => {
                   await logout();
-                  navigate('/');
+                  navigate('/', { replace: true });
                 }}
                 className="flex items-center justify-center gap-2 w-full rounded-xl border border-rose-500/30 bg-rose-500/10 py-2.5 text-xs font-semibold text-rose-300 hover:bg-rose-500/20 hover:text-white transition-colors cursor-pointer"
               >
