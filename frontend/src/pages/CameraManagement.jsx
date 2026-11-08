@@ -113,8 +113,8 @@ export default function CameraManagement() {
       {/* Header */}
       <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Surveillance Camera Nodes</h1>
-          <p className="text-xs text-[#94A3B8]">
+          <h1 className="text-2xl font-extrabold tracking-tight text-[#173B2A]">Surveillance Camera Nodes</h1>
+          <p className="text-xs text-[#647067]">
             Register CCTV sources, configure optical feeds, and manage surveillance perimeters.
           </p>
         </div>
@@ -125,7 +125,7 @@ export default function CameraManagement() {
             setEditCamera(null);
             setShowAddModal(true);
           }}
-          className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500 cursor-pointer"
+          className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] px-4 py-2.5 text-xs font-bold text-white shadow-md transition hover:opacity-95 cursor-pointer"
         >
           <Plus className="h-4 w-4" />
           <span>Register Camera Node</span>
@@ -140,69 +140,69 @@ export default function CameraManagement() {
           {cameras.map((cam) => (
             <div
               key={cam.id}
-              className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm transition hover:border-emerald-500/40"
+              className="rounded-3xl border border-[#E8F5E9] bg-white p-6 shadow-xs transition hover:border-[#4CAF50] hover:shadow-md"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-[#0B1220] border border-[#1E2D42] p-2.5 text-emerald-400">
+                  <div className="rounded-2xl bg-[#E8F5E9] border border-[#C8E6C9] p-3 text-[#1B5E20]">
                     <Camera className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-sm">{cam.name}</h3>
-                    <span className="font-mono text-xs text-slate-400">{cam.id}</span>
+                    <h3 className="font-bold text-[#173B2A] text-sm">{cam.name}</h3>
+                    <span className="font-mono text-xs text-[#647067] font-semibold">{cam.id}</span>
                   </div>
                 </div>
                 <StatusBadge status={cam.status} />
               </div>
 
-              <div className="mt-4 space-y-2 text-xs text-slate-300">
-                <div className="flex justify-between border-b border-[#1E2D42] pb-1.5">
-                  <span className="text-[#94A3B8]">Physical Location:</span>
-                  <span className="font-semibold text-white">{cam.location}</span>
+              <div className="mt-5 space-y-2.5 text-xs">
+                <div className="flex justify-between border-b border-[#E8F5E9] pb-2">
+                  <span className="text-[#647067]">Physical Location:</span>
+                  <span className="font-semibold text-[#173B2A]">{cam.location}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#1E2D42] pb-1.5">
-                  <span className="text-[#94A3B8]">Source Protocol:</span>
-                  <span className="font-mono text-emerald-400 uppercase font-semibold">{cam.source_type}</span>
+                <div className="flex justify-between border-b border-[#E8F5E9] pb-2">
+                  <span className="text-[#647067]">Source Protocol:</span>
+                  <span className="font-mono text-[#1B5E20] uppercase font-bold">{cam.source_type}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#1E2D42] pb-1.5">
-                  <span className="text-[#94A3B8]">Source Path:</span>
-                  <span className="font-mono text-slate-400 truncate max-w-[170px]" title={cam.source_path}>
+                <div className="flex justify-between border-b border-[#E8F5E9] pb-2">
+                  <span className="text-[#647067]">Source Path:</span>
+                  <span className="font-mono text-[#647067] truncate max-w-[170px]" title={cam.source_path}>
                     {cam.source_path}
                   </span>
                 </div>
                 <div className="flex justify-between pb-1">
-                  <span className="text-[#94A3B8]">Operational:</span>
-                  <span className={cam.is_enabled ? 'text-emerald-400 font-bold' : 'text-slate-500'}>
+                  <span className="text-[#647067]">Operational:</span>
+                  <span className={cam.is_enabled ? 'text-[#1B5E20] font-bold' : 'text-[#647067]'}>
                     {cam.is_enabled ? 'Armed & Enabled' : 'Disabled'}
                   </span>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="mt-5 flex items-center justify-between border-t border-[#1E2D42] pt-3">
+              <div className="mt-5 flex items-center justify-between border-t border-[#E8F5E9] pt-4">
                 <button
                   onClick={() => handleToggle(cam.id)}
-                  className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition cursor-pointer ${
+                  className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition cursor-pointer ${
                     cam.is_enabled
-                      ? 'bg-amber-500/10 text-amber-300 border border-amber-500/30 hover:bg-amber-500/20'
-                      : 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/20'
+                      ? 'bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100'
+                      : 'bg-[#E8F5E9] text-[#1B5E20] border border-[#C8E6C9] hover:bg-[#1B5E20] hover:text-white'
                   }`}
                 >
                   <Power className="h-3.5 w-3.5" />
                   <span>{cam.is_enabled ? 'Deactivate' : 'Activate'}</span>
                 </button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => openEdit(cam)}
-                    className="rounded-lg p-1.5 text-slate-400 transition hover:bg-[#1A273D] hover:text-white cursor-pointer"
+                    className="rounded-xl p-2 text-[#647067] transition hover:bg-[#F8F9F0] hover:text-[#173B2A] cursor-pointer"
                     title="Edit camera"
                   >
                     <Edit3 className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => handleDelete(cam.id)}
-                    className="rounded-lg p-1.5 text-slate-400 transition hover:bg-rose-500/20 hover:text-rose-400 cursor-pointer"
+                    className="rounded-xl p-2 text-[#647067] transition hover:bg-rose-50 hover:text-rose-600 cursor-pointer"
                     title="Delete camera"
                   >
                     <Trash2 className="h-4 w-4" />
@@ -222,23 +222,23 @@ export default function CameraManagement() {
 
       {/* Add / Edit Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-lg rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-6 shadow-2xl text-[#F8FAFC]">
-            <div className="flex items-center justify-between border-b border-[#1E2D42] pb-4">
-              <h3 className="text-base font-bold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-lg rounded-3xl border border-[#E8F5E9] bg-white p-7 shadow-2xl text-[#173B2A]">
+            <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-4">
+              <h3 className="text-base font-bold text-[#173B2A]">
                 {editCamera ? `Edit Camera Node: ${editCamera.id}` : 'Register Surveillance Camera'}
               </h3>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="rounded-lg p-1 text-slate-400 hover:bg-[#1A273D] hover:text-white cursor-pointer"
+                className="rounded-xl p-1 text-[#647067] hover:bg-[#F8F9F0] hover:text-[#173B2A] cursor-pointer"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+            <form onSubmit={handleSubmit} className="mt-5 space-y-4">
               <div>
-                <label className="text-xs font-semibold text-slate-300">Camera ID</label>
+                <label className="text-xs font-bold text-[#173B2A]">Camera ID</label>
                 <input
                   type="text"
                   disabled={!!editCamera}
@@ -246,37 +246,37 @@ export default function CameraManagement() {
                   onChange={(e) => setCamId(e.target.value)}
                   placeholder="CAM_01"
                   required
-                  className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white disabled:opacity-50 focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] px-3.5 py-2 text-xs text-[#173B2A] disabled:opacity-50 focus:bg-white focus:border-[#4CAF50] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300">Camera Descriptive Name</label>
+                <label className="text-xs font-bold text-[#173B2A]">Camera Descriptive Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="North Perimeter Gate"
                   required
-                  className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] px-3.5 py-2 text-xs text-[#173B2A] focus:bg-white focus:border-[#4CAF50] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300">Location Area</label>
+                <label className="text-xs font-bold text-[#173B2A]">Location Area</label>
                 <input
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="Sector A - Industrial Entry"
                   required
-                  className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] px-3.5 py-2 text-xs text-[#173B2A] focus:bg-white focus:border-[#4CAF50] focus:outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-semibold text-slate-300">Source Protocol</label>
+                  <label className="text-xs font-bold text-[#173B2A]">Source Protocol</label>
                   <select
                     value={sourceType}
                     onChange={(e) => {
@@ -284,7 +284,7 @@ export default function CameraManagement() {
                       if (e.target.value === 'synthetic') setSourcePath('synthetic_source');
                       if (e.target.value === 'webcam') setSourcePath('0');
                     }}
-                    className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
+                    className="mt-1 w-full rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] px-3.5 py-2 text-xs text-[#173B2A] focus:bg-white focus:border-[#4CAF50] focus:outline-none font-bold cursor-pointer"
                   >
                     <option value="synthetic">Synthetic Simulation</option>
                     <option value="webcam">Physical Webcam (0)</option>
@@ -294,14 +294,14 @@ export default function CameraManagement() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-300">Source Index / Path</label>
+                  <label className="text-xs font-bold text-[#173B2A]">Source Index / Path</label>
                   <input
                     type="text"
                     value={sourcePath}
                     onChange={(e) => setSourcePath(e.target.value)}
                     placeholder="0 or path/to/video.mp4"
                     required
-                    className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                    className="mt-1 w-full rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] px-3.5 py-2 text-xs text-[#173B2A] focus:bg-white focus:border-[#4CAF50] focus:outline-none"
                   />
                 </div>
               </div>
@@ -312,25 +312,25 @@ export default function CameraManagement() {
                   id="enabledCheck"
                   checked={isEnabled}
                   onChange={(e) => setIsEnabled(e.target.checked)}
-                  className="h-4 w-4 rounded border-[#1E2D42] bg-[#0B1220] text-emerald-500 focus:ring-0 cursor-pointer"
+                  className="h-4 w-4 rounded border-[#C8E6C9] text-[#1B5E20] focus:ring-[#4CAF50] cursor-pointer"
                 />
-                <label htmlFor="enabledCheck" className="text-xs font-medium text-slate-300 cursor-pointer">
+                <label htmlFor="enabledCheck" className="text-xs font-semibold text-[#173B2A] cursor-pointer">
                   Enable immediately upon registration
                 </label>
               </div>
 
-              <div className="mt-6 flex justify-end gap-2 border-t border-[#1E2D42] pt-4">
+              <div className="mt-6 flex justify-end gap-3 border-t border-[#E8F5E9] pt-4">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="rounded-lg px-4 py-2 text-xs font-semibold text-slate-400 hover:bg-[#1A273D] hover:text-white cursor-pointer"
+                  className="rounded-2xl px-4 py-2 text-xs font-bold text-[#647067] hover:bg-[#F8F9F0] hover:text-[#173B2A] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-lg bg-emerald-600 px-5 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500 disabled:opacity-50 cursor-pointer"
+                  className="rounded-2xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] px-5 py-2.5 text-xs font-bold text-white shadow-md transition hover:opacity-95 disabled:opacity-50 cursor-pointer"
                 >
                   {submitting ? 'Saving...' : editCamera ? 'Update Camera' : 'Register Camera'}
                 </button>

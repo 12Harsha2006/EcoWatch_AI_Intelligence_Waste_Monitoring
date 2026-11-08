@@ -126,24 +126,24 @@ export default function Settings() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">System Settings & Perimeter Rules</h1>
-        <p className="text-xs text-[#94A3B8]">
+        <h1 className="text-2xl font-extrabold tracking-tight text-[#173B2A]">System Settings & Perimeter Rules</h1>
+        <p className="text-xs text-[#647067]">
           Configure detection sensitivity, restricted polygon zones, surveillance notifications, and AI model hooks.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
+
         {/* Left: Restricted Zone Configuration */}
-        <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-[#1E2D42] pb-3">
+        <div className="rounded-3xl border border-[#E8F5E9] bg-white p-6 shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-3">
             <div className="flex items-center gap-2">
-              <ShieldAlert className="h-5 w-5 text-amber-400" />
-              <h3 className="text-sm font-bold text-white">Restricted Zone Management</h3>
+              <ShieldAlert className="h-5 w-5 text-amber-600" />
+              <h3 className="text-sm font-bold text-[#173B2A]">Restricted Zone Management</h3>
             </div>
             <button
               onClick={() => setShowAddZone(!showAddZone)}
-              className="flex items-center gap-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 text-xs font-semibold text-emerald-400 transition hover:bg-emerald-500/20 cursor-pointer"
+              className="flex items-center gap-1.5 rounded-xl bg-[#E8F5E9] border border-[#C8E6C9] px-3.5 py-1.5 text-xs font-bold text-[#1B5E20] transition hover:bg-[#1B5E20] hover:text-white cursor-pointer shadow-xs"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>Define Zone</span>
@@ -151,11 +151,11 @@ export default function Settings() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-300">Filter Zones by Camera Node</label>
+            <label className="text-xs font-bold text-[#173B2A]">Filter Zones by Camera Node</label>
             <select
               value={selectedCamId}
               onChange={(e) => setSelectedCamId(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-[#1E2D42] bg-[#0B1220] px-3 py-2 text-xs text-white focus:border-emerald-500 focus:outline-none font-medium cursor-pointer"
+              className="mt-1 w-full rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] px-3.5 py-2 text-xs text-[#173B2A] focus:bg-white focus:border-[#4CAF50] focus:outline-none font-bold cursor-pointer"
             >
               {cameras.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -167,32 +167,32 @@ export default function Settings() {
 
           {/* Add Zone Drawer */}
           {showAddZone && (
-            <form onSubmit={handleCreateZone} className="rounded-xl border border-[#1E2D42] bg-[#0B1220] p-4 space-y-3">
-              <h4 className="text-xs font-bold text-emerald-400">Add New Restricted Spatial Zone</h4>
+            <form onSubmit={handleCreateZone} className="rounded-2xl border border-[#C8E6C9] bg-[#F8F9F0] p-5 space-y-3 animate-in fade-in">
+              <h4 className="text-xs font-bold text-[#1B5E20]">Add New Restricted Spatial Zone</h4>
               <div>
-                <label className="text-[11px] font-semibold text-slate-300">Zone Name</label>
+                <label className="text-[11px] font-bold text-[#173B2A]">Zone Name</label>
                 <input
                   type="text"
                   value={zoneName}
                   onChange={(e) => setZoneName(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#111C2E] px-3 py-1.5 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-[#C8E6C9] bg-white px-3 py-1.5 text-xs text-[#173B2A] focus:border-[#4CAF50] focus:outline-none"
                   required
                 />
               </div>
               <div>
-                <label className="text-[11px] font-semibold text-slate-300">Description</label>
+                <label className="text-[11px] font-bold text-[#173B2A]">Description</label>
                 <input
                   type="text"
                   value={zoneDesc}
                   onChange={(e) => setZoneDesc(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#111C2E] px-3 py-1.5 text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-[#C8E6C9] bg-white px-3 py-1.5 text-xs text-[#173B2A] focus:border-[#4CAF50] focus:outline-none"
                 />
               </div>
 
               <div>
                 <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-semibold text-slate-300">Polygon Coordinates (JSON Array)</label>
-                  <span className="text-[10px] text-slate-500 font-mono">Resolution: 640 x 480</span>
+                  <label className="text-[11px] font-bold text-[#173B2A]">Polygon Coordinates (JSON Array)</label>
+                  <span className="text-[10px] text-[#647067] font-mono">Resolution: 640 x 480</span>
                 </div>
 
                 {/* Preset quick buttons */}
@@ -207,7 +207,7 @@ export default function Settings() {
                       key={p.label}
                       type="button"
                       onClick={() => setZoneCoords(p.coords)}
-                      className="rounded border border-[#1E2D42] bg-[#111C2E] px-2 py-0.5 text-[10px] font-medium text-slate-300 transition hover:bg-emerald-600 hover:text-white hover:border-emerald-600 cursor-pointer"
+                      className="rounded-lg border border-[#C8E6C9] bg-white px-2.5 py-1 text-[10px] font-bold text-[#173B2A] transition hover:bg-[#1B5E20] hover:text-white cursor-pointer"
                     >
                       {p.label}
                     </button>
@@ -218,34 +218,34 @@ export default function Settings() {
                   rows={2}
                   value={zoneCoords}
                   onChange={(e) => setZoneCoords(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#1E2D42] bg-[#111C2E] px-3 py-1.5 font-mono text-xs text-white focus:border-emerald-500 focus:outline-none"
+                  className="mt-1 w-full rounded-xl border border-[#C8E6C9] bg-white px-3 py-1.5 font-mono text-xs text-[#173B2A] focus:border-[#4CAF50] focus:outline-none"
                   required
                 />
               </div>
 
               {/* Visual SVG Polygon Preview with Click-to-Draw */}
-              <div className="rounded-lg border border-[#1E2D42] bg-[#070D18] p-2">
-                <div className="flex items-center justify-between text-[10px] text-slate-400 mb-1">
+              <div className="rounded-2xl border border-slate-800 bg-slate-950 p-3">
+                <div className="flex items-center justify-between text-[10px] text-slate-300 mb-1.5">
                   <span>Interactive Zone Canvas (Click inside to plot points)</span>
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={() => setZoneCoords('[]')}
-                      className="text-[10px] text-rose-400 hover:underline cursor-pointer"
+                      className="text-[10px] text-rose-400 font-bold hover:underline cursor-pointer"
                     >
                       Clear Points
                     </button>
-                    <span className="text-amber-400 font-mono">640x480</span>
+                    <span className="text-amber-400 font-mono font-bold">640x480</span>
                   </div>
                 </div>
-                <div className="relative aspect-[4/3] w-full max-h-40 bg-black rounded border border-[#1E2D42] overflow-hidden flex items-center justify-center cursor-crosshair">
+                <div className="relative aspect-[4/3] w-full max-h-40 bg-black rounded-xl border border-slate-800 overflow-hidden flex items-center justify-center cursor-crosshair">
                   <svg
                     viewBox="0 0 640 480"
                     onClick={handleCanvasClick}
                     className="h-full w-full select-none"
                   >
-                    <line x1="0" y1="240" x2="640" y2="240" stroke="#1e293b" strokeDasharray="4 4" />
-                    <line x1="320" y1="0" x2="320" y2="480" stroke="#1e293b" strokeDasharray="4 4" />
+                    <line x1="0" y1="240" x2="640" y2="240" stroke="#334155" strokeDasharray="4 4" />
+                    <line x1="320" y1="0" x2="320" y2="480" stroke="#334155" strokeDasharray="4 4" />
                     {(() => {
                       try {
                         const pts = JSON.parse(zoneCoords);
@@ -256,7 +256,7 @@ export default function Settings() {
                               {pts.length >= 3 && (
                                 <polygon
                                   points={pointsStr}
-                                  fill="rgba(245, 158, 11, 0.25)"
+                                  fill="rgba(245, 158, 11, 0.3)"
                                   stroke="#f59e0b"
                                   strokeWidth="3"
                                 />
@@ -273,11 +273,11 @@ export default function Settings() {
                               )}
                               {pts.map((p, idx) => (
                                 <g key={idx}>
-                                  <circle cx={p[0]} cy={p[1]} r="6" fill="#10b981" />
+                                  <circle cx={p[0]} cy={p[1]} r="6" fill="#4CAF50" />
                                   <text
                                     x={p[0] + 8}
                                     y={p[1] - 8}
-                                    fill="#10b981"
+                                    fill="#4CAF50"
                                     fontSize="12"
                                     fontFamily="monospace"
                                     fontWeight="bold"
@@ -302,13 +302,13 @@ export default function Settings() {
                 <button
                   type="button"
                   onClick={() => setShowAddZone(false)}
-                  className="rounded px-2.5 py-1 text-xs font-medium text-slate-400 hover:text-white cursor-pointer"
+                  className="rounded-xl px-3 py-1.5 text-xs font-bold text-[#647067] hover:bg-[#E8F5E9] hover:text-[#173B2A] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="rounded bg-emerald-600 px-3 py-1 text-xs font-semibold text-white shadow-sm hover:bg-emerald-500 cursor-pointer"
+                  className="rounded-xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] px-4 py-1.5 text-xs font-bold text-white shadow-sm hover:opacity-95 cursor-pointer"
                 >
                   Save Zone
                 </button>
@@ -321,19 +321,19 @@ export default function Settings() {
             {cameraZones.map((z) => (
               <div
                 key={z.id}
-                className="flex items-center justify-between rounded-xl border border-[#1E2D42] bg-[#0B1220] p-3 text-xs"
+                className="flex items-center justify-between rounded-2xl border border-[#E8F5E9] bg-[#F8F9F0] p-4 text-xs"
               >
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-white">{z.name}</span>
-                    <span className="font-mono text-[10px] text-emerald-400 font-semibold">{z.id}</span>
+                    <span className="font-bold text-[#173B2A]">{z.name}</span>
+                    <span className="font-mono text-[10px] text-[#1B5E20] font-bold">{z.id}</span>
                   </div>
-                  <p className="mt-0.5 text-slate-400">{z.description || 'Restricted perimeter'}</p>
-                  <p className="font-mono text-[10px] text-slate-500 truncate max-w-sm">{z.polygon_coords}</p>
+                  <p className="mt-0.5 text-[#647067]">{z.description || 'Restricted perimeter'}</p>
+                  <p className="font-mono text-[10px] text-[#647067] truncate max-w-sm mt-1">{z.polygon_coords}</p>
                 </div>
                 <button
                   onClick={() => handleDeleteZone(z.id)}
-                  className="rounded p-1.5 text-slate-400 transition hover:bg-rose-500/20 hover:text-rose-400 cursor-pointer"
+                  className="rounded-xl p-2 text-[#647067] transition hover:bg-rose-50 hover:text-rose-600 cursor-pointer"
                   title="Remove zone"
                 >
                   <Trash2 className="h-4 w-4" />
@@ -341,7 +341,7 @@ export default function Settings() {
               </div>
             ))}
             {cameraZones.length === 0 && (
-              <p className="text-center py-6 text-xs text-slate-500">
+              <p className="text-center py-6 text-xs text-[#647067]">
                 No restricted zones configured on this camera node.
               </p>
             )}
@@ -351,16 +351,16 @@ export default function Settings() {
         {/* Right: Surveillance Parameters & AI Roadmap */}
         <div className="space-y-6">
           {/* Sensitivity & Preferences */}
-          <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm space-y-4">
-            <div className="flex items-center gap-2 border-b border-[#1E2D42] pb-3">
-              <Sliders className="h-5 w-5 text-emerald-400" />
-              <h3 className="text-sm font-bold text-white">Detection Sensitivity & Cooldown</h3>
+          <div className="rounded-3xl border border-[#E8F5E9] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 border-b border-[#E8F5E9] pb-3">
+              <Sliders className="h-5 w-5 text-[#1B5E20]" />
+              <h3 className="text-sm font-bold text-[#173B2A]">Detection Sensitivity & Cooldown</h3>
             </div>
 
             <div>
-              <div className="flex justify-between text-xs text-slate-300 font-medium mb-1">
+              <div className="flex justify-between text-xs text-[#173B2A] font-bold mb-1">
                 <span>Minimum Confidence Threshold</span>
-                <span className="font-mono font-bold text-emerald-400">{(confidenceThreshold * 100).toFixed(0)}%</span>
+                <span className="font-mono text-[#1B5E20]">{(confidenceThreshold * 100).toFixed(0)}%</span>
               </div>
               <input
                 type="range"
@@ -369,14 +369,14 @@ export default function Settings() {
                 step="0.05"
                 value={confidenceThreshold}
                 onChange={(e) => setConfidenceThreshold(parseFloat(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
+                className="w-full accent-[#1B5E20] cursor-pointer"
               />
             </div>
 
             <div>
-              <div className="flex justify-between text-xs text-slate-300 font-medium mb-1">
+              <div className="flex justify-between text-xs text-[#173B2A] font-bold mb-1">
                 <span>Incident Alert Cooldown</span>
-                <span className="font-mono font-bold text-emerald-400">{cooldownSeconds} seconds</span>
+                <span className="font-mono text-[#1B5E20]">{cooldownSeconds} seconds</span>
               </div>
               <input
                 type="range"
@@ -385,27 +385,27 @@ export default function Settings() {
                 step="1"
                 value={cooldownSeconds}
                 onChange={(e) => setCooldownSeconds(parseInt(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
+                className="w-full accent-[#1B5E20] cursor-pointer"
               />
             </div>
 
-            <div className="space-y-2 pt-2 border-t border-[#1E2D42]">
-              <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer font-medium">
+            <div className="space-y-2.5 pt-2 border-t border-[#E8F5E9]">
+              <label className="flex items-center gap-2.5 text-xs text-[#173B2A] cursor-pointer font-semibold">
                 <input
                   type="checkbox"
                   checked={emailAlerts}
                   onChange={(e) => setEmailAlerts(e.target.checked)}
-                  className="rounded border-[#1E2D42] bg-[#0B1220] text-emerald-500 focus:ring-0 cursor-pointer"
+                  className="rounded border-[#C8E6C9] text-[#1B5E20] focus:ring-[#4CAF50] cursor-pointer"
                 />
                 <span>Email supervisor digest for verified incidents</span>
               </label>
 
-              <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer font-medium">
+              <label className="flex items-center gap-2.5 text-xs text-[#173B2A] cursor-pointer font-semibold">
                 <input
                   type="checkbox"
                   checked={audioAlerts}
                   onChange={(e) => setAudioAlerts(e.target.checked)}
-                  className="rounded border-[#1E2D42] bg-[#0B1220] text-emerald-500 focus:ring-0 cursor-pointer"
+                  className="rounded border-[#C8E6C9] text-[#1B5E20] focus:ring-[#4CAF50] cursor-pointer"
                 />
                 <span>Audible siren on live surveillance dumping detection</span>
               </label>
@@ -413,7 +413,7 @@ export default function Settings() {
 
             <div className="pt-2 flex items-center justify-between">
               {savedSuccess ? (
-                <span className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                <span className="flex items-center gap-1.5 text-xs text-[#1B5E20] font-bold">
                   <CheckCircle className="h-4 w-4" /> Preferences saved!
                 </span>
               ) : (
@@ -422,7 +422,7 @@ export default function Settings() {
               <button
                 type="button"
                 onClick={handleSavePreferences}
-                className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500 cursor-pointer"
+                className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#1B5E20] to-[#4CAF50] px-5 py-2.5 text-xs font-bold text-white shadow-md transition hover:opacity-95 cursor-pointer"
               >
                 <Save className="h-3.5 w-3.5" /> Save Preferences
               </button>
@@ -430,67 +430,67 @@ export default function Settings() {
           </div>
 
           {/* AI Architecture Status */}
-          <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm space-y-3">
-            <div className="flex items-center gap-2 border-b border-[#1E2D42] pb-3">
-              <Cpu className="h-5 w-5 text-teal-400" />
-              <h3 className="text-sm font-bold text-white">Pretrained AI Model Hooks</h3>
+          <div className="rounded-3xl border border-[#E8F5E9] bg-white p-6 shadow-xs space-y-3">
+            <div className="flex items-center gap-2 border-b border-[#E8F5E9] pb-3">
+              <Cpu className="h-5 w-5 text-[#1B5E20]" />
+              <h3 className="text-sm font-bold text-[#173B2A]">Pretrained AI Model Hooks</h3>
             </div>
 
-            <div className="space-y-2 text-xs text-slate-300">
-              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
-                <span className="font-semibold text-white">YOLOv8 / YOLOv11:</span>
-                <span className="font-mono text-emerald-400 font-semibold">Weights Ready (`yolov8n.pt`)</span>
+            <div className="space-y-2.5 text-xs">
+              <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-2">
+                <span className="font-semibold text-[#173B2A]">YOLOv8 / YOLOv11:</span>
+                <span className="font-mono text-[#1B5E20] font-bold">Weights Ready (`yolov8n.pt`)</span>
               </div>
-              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
-                <span className="font-semibold text-white">Grounding DINO:</span>
-                <span className="font-mono text-amber-400 font-semibold">Text Prompt Hook</span>
+              <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-2">
+                <span className="font-semibold text-[#173B2A]">Grounding DINO:</span>
+                <span className="font-mono text-amber-800 font-bold">Text Prompt Hook</span>
               </div>
-              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
-                <span className="font-semibold text-white">MediaPipe Pose:</span>
-                <span className="font-mono text-teal-400 font-semibold">Discarding Action</span>
+              <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-2">
+                <span className="font-semibold text-[#173B2A]">MediaPipe Pose:</span>
+                <span className="font-mono text-teal-800 font-bold">Discarding Action</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-white">ByteTrack:</span>
-                <span className="font-mono text-sky-400 font-semibold">Temporal Persistence</span>
+                <span className="font-semibold text-[#173B2A]">ByteTrack:</span>
+                <span className="font-mono text-sky-800 font-bold">Temporal Persistence</span>
               </div>
             </div>
           </div>
 
           {/* Administrator Session & Security */}
-          <div className="rounded-2xl border border-[#1E2D42] bg-[#111C2E] p-5 shadow-sm space-y-3">
-            <div className="flex items-center justify-between border-b border-[#1E2D42] pb-3">
+          <div className="rounded-3xl border border-[#E8F5E9] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-3">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-emerald-400" />
-                <h3 className="text-sm font-bold text-white">Administrator Terminal Session</h3>
+                <ShieldCheck className="h-5 w-5 text-[#1B5E20]" />
+                <h3 className="text-sm font-bold text-[#173B2A]">Administrator Terminal Session</h3>
               </div>
-              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+              <span className="text-[10px] font-mono text-[#1B5E20] font-bold bg-[#E8F5E9] px-2.5 py-1 rounded-xl border border-[#C8E6C9]">
                 ACTIVE
               </span>
             </div>
 
-            <div className="space-y-2 text-xs text-slate-300">
-              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
-                <span className="text-[#94A3B8]">Authenticated As:</span>
-                <span className="font-semibold text-white">{user?.name || 'Chief Environmental Officer'}</span>
+            <div className="space-y-2.5 text-xs">
+              <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-2">
+                <span className="text-[#647067]">Authenticated As:</span>
+                <span className="font-bold text-[#173B2A]">{user?.name || 'Chief Environmental Officer'}</span>
               </div>
-              <div className="flex items-center justify-between border-b border-[#1E2D42] pb-2">
-                <span className="text-[#94A3B8]">Email:</span>
-                <span className="font-mono text-slate-300">{user?.email || 'admin@wastedetection.gov'}</span>
+              <div className="flex items-center justify-between border-b border-[#E8F5E9] pb-2">
+                <span className="text-[#647067]">Email:</span>
+                <span className="font-mono text-[#173B2A]">{user?.email || 'admin@wastedetection.gov'}</span>
               </div>
               <div className="flex items-center justify-between pb-1">
-                <span className="text-[#94A3B8]">Authorization Scope:</span>
-                <span className="font-semibold text-emerald-400">{user?.role || 'System Administrator'}</span>
+                <span className="text-[#647067]">Authorization Scope:</span>
+                <span className="font-bold text-[#1B5E20]">{user?.role || 'System Administrator'}</span>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-[#1E2D42]">
+            <div className="pt-2 border-t border-[#E8F5E9]">
               <button
                 type="button"
                 onClick={async () => {
                   await logout();
                   navigate('/', { replace: true });
                 }}
-                className="flex items-center justify-center gap-2 w-full rounded-xl border border-rose-500/30 bg-rose-500/10 py-2.5 text-xs font-semibold text-rose-300 hover:bg-rose-500/20 hover:text-white transition-colors cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full rounded-2xl border border-rose-200 bg-rose-50 py-3 text-xs font-bold text-rose-700 hover:bg-rose-100 transition-colors cursor-pointer"
               >
                 <LogOut className="h-4 w-4" />
                 <span>Log Out to Public Portal</span>

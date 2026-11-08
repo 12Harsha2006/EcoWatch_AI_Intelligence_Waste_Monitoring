@@ -24,6 +24,7 @@ export default function Sidebar() {
     await logout();
     navigate('/', { replace: true });
   };
+
   const navItems = [
     { label: 'Overview', path: '/dashboard', icon: LayoutDashboard, exact: true },
     { label: 'Live Monitoring', path: '/dashboard/monitoring', icon: Video },
@@ -36,17 +37,17 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#1E2D42] bg-[#111C2E] px-4 py-5 text-[#F8FAFC] shadow-xl">
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#E8F5E9] bg-white px-4 py-5 text-[#173B2A] shadow-xs">
       {/* Brand Logo & Application Name */}
       <div className="flex items-center gap-3 px-2 mb-6">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#1B5E20] to-[#4CAF50] text-white shadow-lg shadow-[#4CAF50]/20">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1B5E20] to-[#4CAF50] text-white shadow-md shadow-[#4CAF50]/20">
           <ShieldCheck className="h-6 w-6" />
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="text-sm font-extrabold tracking-tight text-white truncate" title="EcoWatch AI">
+          <h1 className="text-sm font-extrabold tracking-tight text-[#173B2A] truncate" title="EcoWatch AI">
             EcoWatch <span className="text-[#4CAF50]">AI</span>
           </h1>
-          <p className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
+          <p className="text-[10px] font-bold tracking-wider text-[#1B5E20] uppercase">
             Waste Surveillance
           </p>
         </div>
@@ -54,7 +55,7 @@ export default function Sidebar() {
 
       {/* Navigation Links */}
       <nav className="flex-1 space-y-1.5 overflow-y-auto pr-1">
-        <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#94A3B8]">
+        <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-[#647067]">
           Monitoring Modules
         </div>
         {navItems.map((item) => {
@@ -67,8 +68,8 @@ export default function Sidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold transition-all duration-200 ${
                   isActive
-                    ? 'bg-gradient-to-r from-emerald-500/20 to-teal-500/10 text-emerald-400 border border-emerald-500/30 shadow-sm'
-                    : 'text-[#94A3B8] hover:bg-[#1A273D] hover:text-white'
+                    ? 'bg-[#E8F5E9] text-[#1B5E20] font-bold border-l-4 border-[#1B5E20] shadow-xs'
+                    : 'text-[#647067] hover:bg-[#F8F9F0] hover:text-[#173B2A]'
                 }`
               }
             >
@@ -80,17 +81,17 @@ export default function Sidebar() {
       </nav>
 
       {/* Return to Public Portal & Logout Links */}
-      <div className="pt-2 pb-2 space-y-1">
+      <div className="pt-2 pb-2 space-y-1 border-t border-[#E8F5E9]">
         <Link
           to="/"
-          className="flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-[#94A3B8] hover:bg-[#1A273D] hover:text-white transition-colors"
+          className="flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-[#647067] hover:bg-[#F8F9F0] hover:text-[#1B5E20] transition-colors"
         >
-          <Globe className="h-4 w-4 text-teal-400" />
+          <Globe className="h-4 w-4 text-[#4CAF50]" />
           <span>Public Portal</span>
         </Link>
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors cursor-pointer"
+          className="flex w-full items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 hover:text-rose-700 transition-colors cursor-pointer"
         >
           <LogOut className="h-4 w-4" />
           <span>Sign Out</span>
@@ -98,18 +99,18 @@ export default function Sidebar() {
       </div>
 
       {/* System Telemetry Footer */}
-      <div className="border-t border-[#1E2D42] pt-4 px-1">
-        <div className="rounded-xl border border-[#1E2D42] bg-[#0B1220] p-3 space-y-1.5">
-          <div className="flex items-center justify-between text-[11px] text-[#94A3B8]">
+      <div className="border-t border-[#E8F5E9] pt-3 px-1">
+        <div className="rounded-2xl border border-[#E8F5E9] bg-[#F8F9F0] p-3 space-y-1.5">
+          <div className="flex items-center justify-between text-[11px] text-[#647067]">
             <span className="flex items-center gap-1.5">
-              <Radio className="h-3 w-3 text-emerald-400 animate-pulse" />
+              <Radio className="h-3 w-3 text-[#4CAF50] animate-pulse" />
               <span>Node Stream</span>
             </span>
-            <span className="font-semibold text-emerald-400">Online</span>
+            <span className="font-bold text-[#1B5E20]">Online</span>
           </div>
-          <div className="flex items-center justify-between text-[10px] text-slate-500">
+          <div className="flex items-center justify-between text-[10px] text-[#647067]">
             <span>Detection Mode</span>
-            <span className="font-mono text-teal-400">MOCK SIMULATED</span>
+            <span className="font-mono font-bold text-[#1B5E20]">MOCK SIMULATED</span>
           </div>
         </div>
       </div>

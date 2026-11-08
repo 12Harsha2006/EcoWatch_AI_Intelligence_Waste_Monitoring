@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 
 export default function DashboardLayout() {
   return (
-    <div className="flex min-h-screen bg-[#0B1220] text-[#F8FAFC]">
+    <div className="flex min-h-screen bg-[#F8F9F0] text-[#173B2A]">
       {/* Left Fixed Sidebar */}
       <Sidebar />
 
@@ -22,4 +22,3 @@ export default function DashboardLayout() {
     </div>
   );
 }
-
