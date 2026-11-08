@@ -172,7 +172,30 @@ export default function Settings() {
                 />
               </div>
               <div>
-                <label className="text-[11px] text-slate-400">Polygon Coordinates (JSON Array)</label>
+                <div className="flex items-center justify-between">
+                  <label className="text-[11px] text-slate-400">Polygon Coordinates (JSON Array)</label>
+                  <span className="text-[10px] text-slate-500 font-mono">Resolution: 640 x 480</span>
+                </div>
+
+                {/* Preset quick buttons */}
+                <div className="my-1.5 flex flex-wrap gap-1">
+                  {[
+                    { label: 'Center Zone', coords: '[[150, 180], [480, 180], [480, 420], [150, 420]]' },
+                    { label: 'Left Dumpster', coords: '[[50, 100], [300, 100], [300, 400], [50, 400]]' },
+                    { label: 'Right Corridor', coords: '[[350, 100], [600, 100], [600, 400], [350, 400]]' },
+                    { label: 'Lower Half', coords: '[[50, 240], [590, 240], [590, 440], [50, 440]]' },
+                  ].map((p) => (
+                    <button
+                      key={p.label}
+                      type="button"
+                      onClick={() => setZoneCoords(p.coords)}
+                      className="rounded bg-slate-800 px-2 py-0.5 text-[10px] text-slate-300 transition hover:bg-emerald-600 hover:text-white"
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+
                 <textarea
                   rows={2}
                   value={zoneCoords}
@@ -180,6 +203,45 @@ export default function Settings() {
                   className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 font-mono text-xs text-white"
                   required
                 />
+              </div>
+
+              {/* Visual SVG Polygon Preview */}
+              <div className="rounded-lg border border-slate-800/80 bg-black/60 p-2">
+                <div className="flex items-center justify-between text-[10px] text-slate-400 mb-1">
+                  <span>Spatial Zone Preview (640x480)</span>
+                  <span className="text-amber-400 font-mono">Restricted Area</span>
+                </div>
+                <div className="relative aspect-[4/3] w-full max-h-36 bg-slate-950 rounded border border-slate-900 overflow-hidden flex items-center justify-center">
+                  <svg viewBox="0 0 640 480" className="h-full w-full">
+                    {/* Background grid */}
+                    <line x1="0" y1="240" x2="640" y2="240" stroke="#1e293b" strokeDasharray="4 4" />
+                    <line x1="320" y1="0" x2="320" y2="480" stroke="#1e293b" strokeDasharray="4 4" />
+                    {(() => {
+                      try {
+                        const pts = JSON.parse(zoneCoords);
+                        if (Array.isArray(pts) && pts.length >= 3) {
+                          const pointsStr = pts.map((p) => `${p[0]},${p[1]}`).join(' ');
+                          return (
+                            <>
+                              <polygon
+                                points={pointsStr}
+                                fill="rgba(245, 158, 11, 0.2)"
+                                stroke="#f59e0b"
+                                strokeWidth="3"
+                              />
+                              {pts.map((p, idx) => (
+                                <circle key={idx} cx={p[0]} cy={p[1]} r="5" fill="#10b981" />
+                              ))}
+                            </>
+                          );
+                        }
+                      } catch {
+                        return null;
+                      }
+                      return null;
+                    })()}
+                  </svg>
+                </div>
               </div>
               <div className="flex justify-end gap-2 pt-1">
                 <button
@@ -345,3 +407,4 @@ export default function Settings() {
     </div>
   );
 }
+

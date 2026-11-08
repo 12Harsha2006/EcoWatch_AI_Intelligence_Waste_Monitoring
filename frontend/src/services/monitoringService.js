@@ -30,3 +30,4 @@ export const monitoringService = {
     return `${BASE_URL}/api/monitoring/stream/${cameraId}`;
   },
 };
+

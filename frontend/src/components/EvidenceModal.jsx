@@ -247,3 +247,4 @@ export default function EvidenceModal({ incident, onClose, onStatusUpdated }) {
     </div>
   );
 }
+

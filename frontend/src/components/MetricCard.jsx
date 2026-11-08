@@ -68,3 +68,4 @@ export default function MetricCard({ title, value, icon: Icon, delta, deltaType 
     </div>
   );
 }
+

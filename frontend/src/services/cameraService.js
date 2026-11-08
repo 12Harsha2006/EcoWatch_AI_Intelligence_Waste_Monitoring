@@ -45,3 +45,4 @@ export const cameraService = {
     return res.data;
   },
 };
+

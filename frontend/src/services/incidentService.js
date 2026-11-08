@@ -71,3 +71,4 @@ export const incidentService = {
     return `${BASE_URL}/evidence-files/${folderName}/${filename}`;
   },
 };
+
